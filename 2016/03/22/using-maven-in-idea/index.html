@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Maven," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="1.什么是MavenMaven简单来说是一个项目管理工具，被认为是Ant的替代品或者继任者。虽然广受诟病，一个不争的事实就是Maven逐渐替代了Ant，使用Maven也成了Java开发人员的一个必要技能。 2.IntelliJ IDEA在Java的世界里，Eclipse毋容置疑是IDE中的王者，IntelliJ IDEA 也是一个相当优秀的IDE，IntelliJ IDEA提供了大量的智能规则来协">
+<meta name="keywords" content="Maven">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven与IntelliJ IDEA的完美结合">
+<meta property="og:url" content="http://yoursite.com/2016/03/22/using-maven-in-idea/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="1.什么是MavenMaven简单来说是一个项目管理工具，被认为是Ant的替代品或者继任者。虽然广受诟病，一个不争的事实就是Maven逐渐替代了Ant，使用Maven也成了Java开发人员的一个必要技能。 2.IntelliJ IDEA在Java的世界里，Eclipse毋容置疑是IDE中的王者，IntelliJ IDEA 也是一个相当优秀的IDE，IntelliJ IDEA提供了大量的智能规则来协">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_env_1.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_env_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_install_success.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_local_repository.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_IntelliJ_setting.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven-archetype-webapp.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/create_maven_project_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/create_maven_project_3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/create_maven_project_4.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_project_structure.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_project_structure_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_project_set_jdk.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/maven_mark_as_sources.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_server.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_server_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_server_3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_deployment.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_deployment_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/edit_configurations_tomcat_deployment_3.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/start_tomcat.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/maven/access_success.png">
+<meta property="og:updated_time" content="2016-04-08T07:44:13.090Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven与IntelliJ IDEA的完美结合">
+<meta name="twitter:description" content="1.什么是MavenMaven简单来说是一个项目管理工具，被认为是Ant的替代品或者继任者。虽然广受诟病，一个不争的事实就是Maven逐渐替代了Ant，使用Maven也成了Java开发人员的一个必要技能。 2.IntelliJ IDEA在Java的世界里，Eclipse毋容置疑是IDE中的王者，IntelliJ IDEA 也是一个相当优秀的IDE，IntelliJ IDEA提供了大量的智能规则来协">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/maven/maven_env_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/22/using-maven-in-idea/"/>
+
+
+
+
+
+  <title>Maven与IntelliJ IDEA的完美结合 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/22/using-maven-in-idea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Maven与IntelliJ IDEA的完美结合</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-22T11:30:59+08:00">
+                2016-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-什么是Maven"><a href="#1-什么是Maven" class="headerlink" title="1.什么是Maven"></a>1.什么是Maven</h1><p>Maven简单来说是一个项目管理工具，被认为是Ant的替代品或者继任者。虽然广受诟病，一个不争的事实就是Maven逐渐替代了Ant，使用Maven也成了Java开发人员的一个必要技能。</p>
+<h1 id="2-IntelliJ-IDEA"><a href="#2-IntelliJ-IDEA" class="headerlink" title="2.IntelliJ IDEA"></a>2.IntelliJ IDEA</h1><p>在Java的世界里，Eclipse毋容置疑是IDE中的王者，IntelliJ IDEA 也是一个相当优秀的IDE，IntelliJ IDEA提供了大量的智能规则来协助开发者，类似代码补全，用法的转换，格式的提示等等，当你习惯以后，你就会对那个小灯泡爱不释手。</p>
+<h1 id="3-Maven-IntelliJ-IDEA-的优势"><a href="#3-Maven-IntelliJ-IDEA-的优势" class="headerlink" title="3.Maven + IntelliJ IDEA 的优势"></a>3.Maven + IntelliJ IDEA 的优势</h1><p><strong>一切都是Module</strong> </p>
+<p>IntelliJ IDEA借鉴的Maven的概念，不再采取Eclipse里Project的概念，一切都是Module。并且可以混搭使用Maven Module和普通的Java Module，两者可以和谐共存。</p>
+<h1 id="4-Maven-安装"><a href="#4-Maven-安装" class="headerlink" title="4.Maven 安装"></a>4.Maven 安装</h1><p>到<a href="http://maven.apache.org/download.html" target="_blank" rel="noopener">Maven官网</a>下载最新的Maven版本(如果官网打不开，请访问<a href="http://mirror.bit.edu.cn/apache/maven/" target="_blank" rel="noopener">apahce镜像网站</a>下载)，我下载的版本为apache-maven-3.0.5。推荐使用最新的Maven 3,因为比以前的Maven 2性能更好，而且完全兼容Maven 2。</p>
+<p>下载完成后，解压到一个目录，我的目录为：D:\apache-maven-3.0.5，接着配置Maven环境变量M2_HOME为你解压的目录，如下图新建M2_HOME变量并追加到Path后面：<br><img src="/assets/blogImg/maven/maven_env_1.png" alt="image"> <img src="/assets/blogImg/maven/maven_env_2.png" alt="image"></p>
+<p>查看Maven是否安装成功：<br>运行:cmd<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn -v</span><br></pre></td></tr></table></figure></p>
+<p>输出</p>
+<p><img src="/assets/blogImg/maven/maven_install_success.png" alt="image"></p>
+<p>如要想要修改Maven的本地仓库位置，可以在Maven的安装目录下的conf目录下的settings.xml配置文件中设置：</p>
+<p><img src="/assets/blogImg/maven/maven_local_repository.png" alt="image"></p>
+<h1 id="5-Maven-与IntelliJ-IDEA完美使用（基于IntelliJ-IDEA-14）"><a href="#5-Maven-与IntelliJ-IDEA完美使用（基于IntelliJ-IDEA-14）" class="headerlink" title="5.Maven 与IntelliJ IDEA完美使用（基于IntelliJ IDEA 14）"></a>5.Maven 与IntelliJ IDEA完美使用（基于IntelliJ IDEA 14）</h1><p>在IntelliJ IDEA的设置中，可以设置Maven的安装目录，settings.xml文件的位置，和本地仓库的位置等信息。</p>
+<p><img src="/assets/blogImg/maven/maven_IntelliJ_setting.png" alt="image"></p>
+<p>新建Maven项目，create from archetype，选择maven-archetype-webapp</p>
+<p><img src="/assets/blogImg/maven/maven-archetype-webapp.png" alt="image"></p>
+<p>Next,填写GroupId,ArtifactId和Version</p>
+<p><img src="/assets/blogImg/maven/create_maven_project_2.png" alt="image"></p>
+<p>Next，这里在Properties中添加一个参数archetypeCatalog=internal，不加这个参数，在maven生成骨架的时候将会非常慢，有时候会直接卡住。<br>来自网上的解释：</p>
+<blockquote>
+<p>archetypeCatalog表示插件使用的archetype元数据，不加这个参数时默认为remote，local，即中央仓库archetype元数据，由于中央仓库的archetype太多了，所以导致很慢，指定internal来表示仅使用内部元数据。</p>
+</blockquote>
+<p><img src="/assets/blogImg/maven/create_maven_project_3.png" alt="image"></p>
+<p>Next,填写项目名称和module名称。</p>
+<p><img src="/assets/blogImg/maven/create_maven_project_4.png" alt="image"></p>
+<p>点击Finish。</p>
+<p>项目的目录结构如下：</p>
+<p><img src="/assets/blogImg/maven/maven_project_structure.png" alt="image"></p>
+<p>这里IntelliJ弹出了一个对话框”Maven projects need to be imported”，并且项目目录结构中，如果出现该对话框请点击”Enable Auto-Import”,可以在每次修改pom.xml后，自动的下载并导入jar包.</p>
+<p>If you see the “Maven projects need to be imported” popup in IntelliJ, then do click “Enable Auto-Import”.</p>
+<p>点击后，项目会重新构建，构建后的目录结构如下：<br><img src="/assets/blogImg/maven/maven_project_structure_2.png" alt="image"><br>请注意 resources和webapp 文件夹的变化，这个时候项目才是一个web项目。</p>
+<p><strong>设置</strong><br>配置项目的JDK和language level</p>
+<p><img src="/assets/blogImg/maven/maven_project_set_jdk.png" alt="image"></p>
+<p>在main文件夹下新建一个java文件夹，把它设为源代码文件夹。</p>
+<p><img src="/assets/blogImg/maven/maven_mark_as_sources.png" alt="image"></p>
+<p><strong>设置Tomcat</strong></p>
+<p><img src="/assets/blogImg/maven/edit_configurations.png" alt="image"></p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_server.png" alt="image"></p>
+<p>点击+号按钮,选择Local</p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_server_2.png" alt="image"></p>
+<p>填写Name,选择本地Tomcat</p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_server_3.png" alt="image"></p>
+<p>点击”Deployment”面板，然后点击右边的”+”，添加Artifact部署</p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_deployment.png" alt="image"></p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_deployment_2.png" alt="image"></p>
+<p>输入路径</p>
+<p><img src="/assets/blogImg/maven/edit_configurations_tomcat_deployment_3.png" alt="image"></p>
+<p>启动tomcat<br><img src="/assets/blogImg/maven/start_tomcat.png" alt="image"></p>
+<p>访问<br><img src="/assets/blogImg/maven/access_success.png" alt="image"></p>
+<p>完！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Maven/" rel="tag"># Maven</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/18/java-annotation/" rel="next" title="Java中的注解是如何工作的？">
+                <i class="fa fa-chevron-left"></i> Java中的注解是如何工作的？
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/23/Rxlifecycle-basic/" rel="prev" title="Rxlifecycle使用详解，解决RxJava内存泄露问题">
+                Rxlifecycle使用详解，解决RxJava内存泄露问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-什么是Maven"><span class="nav-number">1.</span> <span class="nav-text">1.什么是Maven</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-IntelliJ-IDEA"><span class="nav-number">2.</span> <span class="nav-text">2.IntelliJ IDEA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Maven-IntelliJ-IDEA-的优势"><span class="nav-number">3.</span> <span class="nav-text">3.Maven + IntelliJ IDEA 的优势</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Maven-安装"><span class="nav-number">4.</span> <span class="nav-text">4.Maven 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-Maven-与IntelliJ-IDEA完美使用（基于IntelliJ-IDEA-14）"><span class="nav-number">5.</span> <span class="nav-text">5.Maven 与IntelliJ IDEA完美使用（基于IntelliJ IDEA 14）</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

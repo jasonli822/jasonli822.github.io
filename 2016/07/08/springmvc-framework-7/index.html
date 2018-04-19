@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Spring,SpringMVC,REST," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在上一篇《使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码》文章中讲解了如何利用mybatis-generator自动生成代码，本文讲解一下添加REST功能。 rest(一种软件架构风格) &amp;emsp;&amp;emsp;REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy F">
+<meta name="keywords" content="Java,Spring,SpringMVC,REST">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用IntelliJ IDEA开发SpringMVC网站（七）添加REST功能">
+<meta property="og:url" content="http://yoursite.com/2016/07/08/springmvc-framework-7/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="在上一篇《使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码》文章中讲解了如何利用mybatis-generator自动生成代码，本文讲解一下添加REST功能。 rest(一种软件架构风格) &amp;emsp;&amp;emsp;REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy F">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/Springmvc-rest-xml-view%0A.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/Springmvc-rest-json-view%0A.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/Springmvc-rest-default-view.png">
+<meta property="og:updated_time" content="2016-07-09T05:50:52.840Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用IntelliJ IDEA开发SpringMVC网站（七）添加REST功能">
+<meta name="twitter:description" content="在上一篇《使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码》文章中讲解了如何利用mybatis-generator自动生成代码，本文讲解一下添加REST功能。 rest(一种软件架构风格) &amp;emsp;&amp;emsp;REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy F">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/springmvc/Springmvc-rest-xml-view%0A.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/08/springmvc-framework-7/"/>
+
+
+
+
+
+  <title>使用IntelliJ IDEA开发SpringMVC网站（七）添加REST功能 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/08/springmvc-framework-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用IntelliJ IDEA开发SpringMVC网站（七）添加REST功能</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-08T08:41:05+08:00">
+                2016-07-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在上一篇<a href="/2016/07/01/springmvc-framework-6/">《使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码》</a>文章中讲解了如何利用mybatis-generator自动生成代码，本文讲解一下添加REST功能。</p>
+<p><strong>rest(一种软件架构风格)</strong></p>
+<p>&emsp;&emsp;REST即表述性状态传递（英文：Representational State Transfer，简称REST）是Roy Fielding博士在2000年他的博士论文中提出来的一种软件架构风格。它是一种针对网络应用的设计和开发方式，可以降低开发的复杂性，提高系统的可伸缩性。</p>
+<p>&emsp;&emsp;目前在三种主流的Web服务实现方案中，因为REST模式的Web服务与复杂的SOAP和XML-RPC对比来讲明显的更加简洁，越来越多的web服务开始采用REST风格设计和实现。</p>
+<p>&emsp;&emsp;为了帮助Spring开发人员使用REST架构模式，Spring3.0封装了对REST的良好支持。</p>
+<p><strong>REST基本原理</strong> </p>
+<p>(以下内容摘自《Spring 实战 第3版》)<br>&emsp;&emsp;当谈论REST时，有一种常见的错误就是将其视为“基于URL的Web服务”———将REST作为另一种类型的远程过程调用(Remote Procedure Call, RPC)机制，就像SOAP一样，只不过是通过简单的HTTP URL而不是SOAP的大量XML命名空间来触发。</p>
+<p>&emsp;&emsp;恰好相反，REST与RPC几乎没有任何关系。RPC是面向服务的，并关注于行为和动作；而REST是面向资源的，强调描述应用程序的事务和名词。</p>
+<p>&emsp;&emsp;此外，尽管URL在REST中起了关键作用，但他们仅仅是整体的一部分而已。为了理解REST是什么，我们将它的首字母缩写拆分为不同的组成部分。</p>
+<ul>
+<li>表述性(Representational)——REST资源实际上可以用各种形式来进行表述，包括XML、JSON(JavaScript Object Notation)甚至HTML-最适合资源使用者的任意形式。</li>
+<li>状态(State)——当使用REST的时候，我们更关注资源的状态而不是对资源采取的行为。</li>
+<li>转移(Transfer)——REST涉及转移资源数据，它以某一种表述性形式从一个应用转移到了一个应用。</li>
+</ul>
+<p>&emsp;&emsp;更简洁地讲，<font color="red">REST就是将资源的状态以最合适的形式从服务器端转移到客户端（或者反之）。</font></p>
+<p><strong>Spring是如何支持REST的</strong></p>
+<p>&emsp;&emsp;Spring3对Spring MVC的一些增强功能为REST提供了良好的支持。现在，Spring支持以下方式来开发REST资源。</p>
+<ul>
+<li>控制器可以处理所有的HTTP方法，包含4个主要的REST方法：GET、PUT、DELETE以及POST。</li>
+<li>新的@PathVariable注解使得控制器能够处理参数化的URL(将变量输入作为URL的一部分)</li>
+<li>Spring表单绑定JSP标签库的<a href="form:form" target="_blank" rel="noopener">form:form</a>标签以及新的HiddenHttpMethodFilter,使得通过HTML表单提交PUT和DELETE请求成为可能，即便在某些浏览器中不支持这些HTTP方法。</li>
+<li>通过使用Spring的视图和视图解析器，资源可以以各种形式进行表述，包括将模型数据表现为XML、JSON、Atom和RSS的新视图实现。</li>
+<li>可以使用新的ContentNegotiatingViewResolver来选择最适合客户端的表述。</li>
+<li>基于视图的渲染可以使用新的@ResponseBody注解和各种HTTPMethodConverter实现来达到。</li>
+<li>类似地，新的@ResponseBody注解以及HttpMethodConverter实现可以将传入的HTTP数据转化为传入控制器处理方法的Java对象。</li>
+<li>RestTemplate简化了客户端对REST资源的使用。</li>
+</ul>
+<p><strong>编写面向资源的控制器</strong></p>
+<p>&emsp;&emsp;编写Spring MVC控制器类的模型是相当灵活的。几乎所有签名的方法都可以用来处理Web请求。但是这种灵活性的一个副作用据说SPring MVC允许你开发出不符合RESTful资源的控制器。编写出的控制器很容易是RESTless的。</p>
+<p><strong>剖析RESTless的控制器</strong></p>
+<p>&emsp;&emsp;我们先看一下RESTless控制器究竟长什么样子，这有助于我们理解RESTfult控制器。DisplayUserController就是一个RESTless的控制器，如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/displayUser.htm"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DisplayUserController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(method = RequestMethod.GET)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">displayUser</span><span class="params">(@RequestParam(required = <span class="keyword">false</span>, defaultValue = <span class="string">"1"</span>)</span> <span class="keyword">int</span> id, Model model) </span>&#123;</span><br><span class="line">        model.addAttribute(userService.findById(id));</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"user/view"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>&emsp;&emsp;首先要关注的第一件事是这个类的名字。确实，它只是一个名字而已。但是，它准确表达了这个控制器是做什么的。第一个单词是Display——一个动词。这表明这个控制器是面向行为的，而不是面向资源的。</p>
+<p>&emsp;&emsp;注意类级别的@RequestMapping注解。它说明这个控制器会处理”displayUser.htm”的请求，这似乎表明这个控制器关注于展现User(这里通过类名可以得到确认)的特殊用例。另外，扩展名说明它只能以HTML的形式来展现列表。</p>
+<p>&emsp;&emsp;DisplayUserController的编写方式并没有严重的错误。但是，它并不是一个RESTful的控制器。它是面向行为的并关注于一个特殊的用例：以HTML的形式展现一个User对象的详细信息。</p>
+<p><strong>处理RESTful URL</strong></p>
+<p>&emsp;&emsp;当开始使用REST的时候，很多人想到的第一件事通常是URL。毕竟，在REST中所有的事情都是通过URL完成的。<br><strong>URL是统一资源定位符(uniform resource locator)</strong>的缩写，按照这个名字，URL本意是用于定位资源的。此外，所有的URL同时也都是<strong>URI</strong>或<strong>统一资源标识符(uniform resource identifier)</strong>。如果是这样的话，我们可以认为任何给定的URL不仅可以定位一个资源还可以用于标识一个资源。<br>不同于RESTless URL(<a href="http://localhost:8080/SpringMVCDemo/displayUser.htm?id=2)，" target="_blank" rel="noopener">http://localhost:8080/SpringMVCDemo/displayUser.htm?id=2)，</a> RESTful完成承认HTTP用于表示资源的。 例如：<a href="http://localhost:8080/SpringMVCDemo/users/2" target="_blank" rel="noopener">http://localhost:8080/SpringMVCDemo/users/2</a></p>
+<ul>
+<li><a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 标识了域和端口。</li>
+<li><a href="http://localhost:8080/SpringMVCDemo" target="_blank" rel="noopener">http://localhost:8080/SpringMVCDemo</a> 标识了应用程序的Servlet上下文。这个URL更具体了，它指明了运行在服务器上的一个应用程序。</li>
+<li><a href="http://localhost:8080/SpringMVCDemo/users" target="_blank" rel="noopener">http://localhost:8080/SpringMVCDemo/users</a> 表明了一种资源，也就是SpringMVCDemo应用程序中User的对象列表</li>
+<li>：<a href="http://localhost:8080/SpringMVCDemo/users/2" target="_blank" rel="noopener">http://localhost:8080/SpringMVCDemo/users/2</a> 是最精确的URL，标识了一个特定的User资源</li>
+</ul>
+<p><strong>添加REST功能</strong></p>
+<p>关于REST需要讲解的知识很多，这里就不一一详细介绍了，下面我们直接用一个例子来看看Spring MVC对REST的支持吧。</p>
+<p>例子达到的效果是，根据不同的URL返回不同的View：</p>
+<p><a href="http://localhost:8080/users/2" target="_blank" rel="noopener">http://localhost:8080/users/2</a> 返回默认的视图（FreeMarker）</p>
+<p><a href="http://localhost:8080/users/2.json" target="_blank" rel="noopener">http://localhost:8080/users/2.json</a> 返回JSON</p>
+<p><a href="http://localhost:8080/users/2.xml" target="_blank" rel="noopener">http://localhost:8080/users/2.xml</a> 返回XML</p>
+<p><strong>1.添加依赖</strong><br>在pom.xml里面添加以下依赖：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">...</span><br><span class="line"><span class="tag">&lt;<span class="name">jackson.version</span>&gt;</span>2.7.5<span class="tag">&lt;/<span class="name">jackson.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">jackson_mapper.version</span>&gt;</span>1.9.13<span class="tag">&lt;/<span class="name">jackson_mapper.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">&lt;!-- Needed for JSON View --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.codehaus.jackson<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-mapper-asl<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson_mapper.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- Needed for XML View (with JAXB2) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-oxm<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>使用JAXB2.0实现OXM</p>
+<blockquote>
+<p>OXM是Object XML Mapping的缩写，它是一个O/M-mapper，将java对象映射成XML数据，或者将XML数据映射成java对象。我们把对象与关系数据库之间的映射称为ORM, 所以也把对象与XML之间的映射称为OXM。</p>
+</blockquote>
+<blockquote>
+<p>JAXB（Java Architecture for XML Binding）是一种特殊的序列化/反序列化工具。它可以使XML数据以Java Objects的形式直接应用于Java程序之中，使Java Objects与XML数据之间的转换成为可能。在JAXB中将Java Objects到XML数据的转换称为marshal；XML数据到Java Objects的转换称为unmarshal。原来JAXB是Java EE的一部分，在JDK6中，SUN将其放到了Java SE中，这也是SUN的一贯做法。JDK6中自带的这个JAXB版本是2.0, 比起1.0(JSR 31)来，JAXB2(JSR 222)用JDK5的新特性Annotation来标识要作绑定的类和属性等，这就极大简化了开发的工作量。</p>
+</blockquote>
+<p>更多介绍参考：<a href="http://my.oschina.net/zzx0421/blog/98186" target="_blank" rel="noopener">http://my.oschina.net/zzx0421/blog/98186</a> </p>
+<p><strong>2.Model</strong><br>修改User，使用@XmlRootElement JAXB注解，@XmlRootElement 将一个Java类映射为一段XML的根节点，之后我们可以使用这个Model展示XML结构的数据。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springmvcdemo.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.xml.bind.annotation.XmlRootElement;</span><br><span class="line"></span><br><span class="line"><span class="meta">@XmlRootElement</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	<span class="keyword">private</span> String age;</span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String age, String userName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3.JSON和XML视图</strong></p>
+<p>若要输出 JSON 和 XML 视图，你不需要做任何额外的工作，Spring MVC 将自动处理转换.</p>
+<p><strong>4.Freemarker View</strong><br>一个Freemarker View用来展示查询的User数据.<br>File: /WEB-INF/views/user/view.ftl</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span> <span class="comment">&lt;!-- 使用 HTML5 doctype，不区分大小写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cmn-Hans"</span>&gt;</span> <span class="comment">&lt;!-- 更加标准的 lang 属性写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 声明文档使用的字符编码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">'utf-8'</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 优先使用 IE 最新版本和 Chrome --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Spring @MVC ContentNegotiatingViewResolver<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>User ID :<span class="tag">&lt;/<span class="name">b</span>&gt;</span> $&#123;user.id&#125; <span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>User Age :<span class="tag">&lt;/<span class="name">b</span>&gt;</span> $&#123;user.age&#125; <span class="tag">&lt;<span class="name">br</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">b</span>&gt;</span>User Name :<span class="tag">&lt;/<span class="name">b</span>&gt;</span> $&#123;user.userName&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>5.Controller</strong></p>
+<p>新建一个UserController,如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springmvcdemo.controller;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.springmvcdemo.service.UserService;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.Model;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/users"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserController</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/&#123;id&#125;"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="meta">@ResponseStatus</span>(HttpStatus.OK)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getUser</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">int</span> id, Model model) </span>&#123;</span><br><span class="line">        model.addAttribute(userService.findById(id));</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"user/view"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">	@RequestMapping(value = "/&#123;id&#125;", method = RequestMethod.PUT)</span></span><br><span class="line"><span class="comment">    @ResponseStatus(HttpStatus.NO_CONTENT)</span></span><br><span class="line"><span class="comment">    public void putUser(@PathVariable("id") int id, User user) &#123;</span></span><br><span class="line"><span class="comment">        userService.update(user);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    @RequestMapping(value = "/&#123;id&#125;", method = RequestMethod.DELETE)</span></span><br><span class="line"><span class="comment">    @ResponseStatus(HttpStatus.NO_CONTENT)</span></span><br><span class="line"><span class="comment">    public void deleteUser(@PathVariable("id") int id) &#123;</span></span><br><span class="line"><span class="comment">        userService.deleteById(id);</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    @RequestMapping(method = RequestMethod.POST)</span></span><br><span class="line"><span class="comment">    @ResponseStatus(HttpStatus.CREATED)</span></span><br><span class="line"><span class="comment">    public @ResponseBody User createUser(User user, HttpServletRequest result, HttpServletResponse response) &#123;</span></span><br><span class="line"><span class="comment">        userService.insert(user);</span></span><br><span class="line"><span class="comment">        response.setHeader("Location", "/users/" + user.getId());</span></span><br><span class="line"><span class="comment">        return user;</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>6.ContentNegotiatingViewResolver</strong></p>
+<p>在面向人类访问的Web应用程序中，选择的视图通常来讲都会渲染为HTML。视图解决方案是个简单的活动，如果根据视图名匹配上了视图，那这就是我们要用的视图了，当要讲视图名解析为能够产生资源表述的视图时，我们就需要另外一个维度需要考虑了，视图不仅要匹配视图名，而且选择的视图要适合客户端。如果客户端想要JSON，那么渲染HTML的视图就不行了——尽管视图名可能匹配。</p>
+<p>Spring的ContentNegotiatingViewResolver是一个特殊的视图解析器，它考虑到了客户端所需要的内容类型。就像其他的视图解析器一样，它要作为一个bean配置在Spring应用上下文里。</p>
+<p>在spring-mvc.xml里面增加如下内容：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- ContentNegotiatingViewResolver --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.ContentNegotiatingViewResolver"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"contentNegotiationManager"</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.accept.ContentNegotiationManagerFactoryBean"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultContentType"</span> <span class="attr">value</span>=<span class="string">"text/html"</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mediaTypes"</span>&gt;</span></span><br><span class="line">		   <span class="tag">&lt;<span class="name">map</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"json"</span> <span class="attr">value</span>=<span class="string">"application/json"</span>/&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"xml"</span> <span class="attr">value</span>=<span class="string">"application/xml"</span>/&gt;</span></span><br><span class="line">			  <span class="tag">&lt;<span class="name">entry</span> <span class="attr">key</span>=<span class="string">"html"</span> <span class="attr">value</span>=<span class="string">"text/html"</span>/&gt;</span></span><br><span class="line">		   <span class="tag">&lt;/<span class="name">map</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultViews"</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- JSON View --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">bean</span></span></span><br><span class="line"><span class="tag">				<span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.json.MappingJackson2JsonView"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="comment">&lt;!-- JAXB XML View --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.xml.MarshallingView"</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">					  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.oxm.jaxb.Jaxb2Marshaller"</span>&gt;</span></span><br><span class="line">							 <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"classesToBeBound"</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;<span class="name">list</span>&gt;</span></span><br><span class="line">										   <span class="tag">&lt;<span class="name">value</span>&gt;</span>com.springmvcdemo.model.User<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">									<span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">							 <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">					  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	 <span class="tag">&lt;/<span class="name">list</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>7.Demo</strong></p>
+<p>启动服务，</p>
+<p><a href="http://localhost:8080/users/2.xml" target="_blank" rel="noopener">http://localhost:8080/users/2.xml</a> 返回xml视图：</p>
+<p><img src="/assets/blogImg/springmvc/Springmvc-rest-xml-view
+.png" alt="image"></p>
+<p><a href="http://localhost:8080/users/2.json" target="_blank" rel="noopener">http://localhost:8080/users/2.json</a> 返回json视图：</p>
+<p><img src="/assets/blogImg/springmvc/Springmvc-rest-json-view
+.png" alt="image"></p>
+<p><a href="http://localhost:8080/users/2" target="_blank" rel="noopener">http://localhost:8080/users/2</a> 返回默认视图(html)：</p>
+<p><img src="/assets/blogImg/springmvc/Springmvc-rest-default-view.png" alt="image"></p>
+<p>(代码已提交到GitHub：<a href="https://github.com/jasonli822/MySpringMvcFrame" target="_blank" rel="noopener">https://github.com/jasonli822/MySpringMvcFrame</a>)</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+            <a href="/tags/REST/" rel="tag"># REST</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/01/springmvc-framework-6/" rel="next" title="使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码">
+                <i class="fa fa-chevron-left"></i> 使用IntelliJ IDEA开发SpringMVC网站（六）利用mybatis-generator自动生成代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/09/springmvc-framework-8/" rel="prev" title="使用IntelliJ IDEA开发SpringMVC网站（八）log4jdbc-remix使用">
+                使用IntelliJ IDEA开发SpringMVC网站（八）log4jdbc-remix使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

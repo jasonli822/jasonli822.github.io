@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,爬虫," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Heritrix is the Internet Archive’s open-source, extensible, web-scale, archival-quality web crawler project.  一、源码下载访问GitHub地址：https://github.com/internetarchive/heritrix3  我这里采用Clone的方式，使用的IDE是Intel">
+<meta name="keywords" content="Java,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Heritrix环境安装">
+<meta property="og:url" content="http://yoursite.com/2016/09/30/heritrix-basic/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="Heritrix is the Internet Archive’s open-source, extensible, web-scale, archival-quality web crawler project.  一、源码下载访问GitHub地址：https://github.com/internetarchive/heritrix3  我这里采用Clone的方式，使用的IDE是Intel">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/heritrix-github.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/chekout-from-github.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/clone_repository.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/project-structure.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/create_configuration_for_heritrix.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/run_heritrix.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/run_heritrix_success.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/access_heritrix.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/heritrix-web.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/create_job.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/myjob.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/crawler-beans.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/metadata.operatorContactUrl.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/longerOverrides.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/job_info.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/save_changes.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/heritrix/myjob_web.png">
+<meta property="og:updated_time" content="2017-02-15T08:00:00.880Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Heritrix环境安装">
+<meta name="twitter:description" content="Heritrix is the Internet Archive’s open-source, extensible, web-scale, archival-quality web crawler project.  一、源码下载访问GitHub地址：https://github.com/internetarchive/heritrix3  我这里采用Clone的方式，使用的IDE是Intel">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/heritrix/heritrix-github.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/09/30/heritrix-basic/"/>
+
+
+
+
+
+  <title>Heritrix环境安装 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/09/30/heritrix-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Heritrix环境安装</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-30T08:30:04+08:00">
+                2016-09-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/crawler/" itemprop="url" rel="index">
+                    <span itemprop="name">crawler</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Heritrix is the Internet Archive’s open-source, extensible, web-scale, archival-quality web crawler project.</p>
+</blockquote>
+<h2 id="一、源码下载"><a href="#一、源码下载" class="headerlink" title="一、源码下载"></a>一、源码下载</h2><p>访问GitHub地址：<a href="https://github.com/internetarchive/heritrix3" target="_blank" rel="noopener">https://github.com/internetarchive/heritrix3</a></p>
+<p><img src="/assets/blogImg/heritrix/heritrix-github.png" alt="image"></p>
+<p>我这里采用Clone的方式，使用的IDE是IntelliJ IDEA</p>
+<p><img src="/assets/blogImg/heritrix/chekout-from-github.png" alt="image"></p>
+<p><img src="/assets/blogImg/heritrix/clone_repository.png" alt="image"></p>
+<p>导入完成后的结果如下：<br><img src="/assets/blogImg/heritrix/project-structure.png" alt="image"></p>
+<h2 id="二、启动Heritrix"><a href="#二、启动Heritrix" class="headerlink" title="二、启动Heritrix"></a>二、启动Heritrix</h2><p><a href="https://webarchive.jira.com/wiki/display/Heritrix/Running+Heritrix+3.0+and+3.1" target="_blank" rel="noopener">https://webarchive.jira.com/wiki/display/Heritrix/Running+Heritrix+3.0+and+3.1</a></p>
+<p>尝试启动heritrix，heritrix内核使用jetty所以不需要依附tomcat或者其他web容器。<br>入口类是这个 org.archive.crawler.Heritrix，设置启动参数，如下所示：</p>
+<p><img src="/assets/blogImg/heritrix/create_configuration_for_heritrix.png" alt="image"></p>
+<p>右键 Run ‘Heritrix.main()’启动程序：</p>
+<p><img src="/assets/blogImg/heritrix/run_heritrix.png" alt="image"></p>
+<p>启动成功：<br><img src="/assets/blogImg/heritrix/run_heritrix_success.png" alt="image"></p>
+<h2 id="三、基于Web的用户界面"><a href="#三、基于Web的用户界面" class="headerlink" title="三、基于Web的用户界面"></a>三、基于Web的用户界面</h2><p>After Heritrix has been launched, the Web-based user interface (WUI) becomes accessible.<br>The URI to access the Web UI is typically<br>https://(heritrixhost):8443</p>
+<p>打开浏览器，访问 <a href="https://localhost:8443/" target="_blank" rel="noopener">https://localhost:8443/</a> ,输入用户名密码，admin,admin。</p>
+<p><img src="/assets/blogImg/heritrix/access_heritrix.png" alt="image"></p>
+<p>登录成功后的主控制台页如下所示：</p>
+<p><img src="/assets/blogImg/heritrix/heritrix-web.png" alt="image"></p>
+<h2 id="四、运行第一个爬虫任务的快速指南"><a href="#四、运行第一个爬虫任务的快速指南" class="headerlink" title="四、运行第一个爬虫任务的快速指南"></a>四、运行第一个爬虫任务的快速指南</h2><p>在主控制台页，新建一个名为’myJob’的Job，创建成功后的界面如下：</p>
+<p><img src="/assets/blogImg/heritrix/create_job.png" alt="image"></p>
+<p>点击新创建的’myJob’的名称链接，进入到’myJob’管理界面，如下所示：</p>
+<p><img src="/assets/blogImg/heritrix/myjob.png" alt="image"></p>
+<p>单击工具栏上的”Configuration”链接，进入配置文件的展示/编辑页面如下所示：</p>
+<p><img src="/assets/blogImg/heritrix/crawler-beans.png" alt="image"></p>
+<p>需要进行一些简单的配置，才能使得这个Job正常运行：<br>A. 将一个有效的值添加到 metadata.operatorContactUrl 属性，如下所示：</p>
+<p><img src="/assets/blogImg/heritrix/metadata.operatorContactUrl.png" alt="image"></p>
+<p>1)metadata.operatorContactUrl   你控制Heritrix的URL,一般是<a href="http://127.0.0.1" target="_blank" rel="noopener">http://127.0.0.1</a><br>2)metadata.jobName 表示你的抓取名字,我们刚才创建的是myjob,那就修改为myjob<br>3)metadata.description 表示对这个抓取任务的简单描述,我们这里就描述为 firt crawl job</p>
+<p>B. 接下来，修改爬虫的种子值 longerOverrides 的 <prop>元素, 这里设置你想抓取的种子.</prop></p>
+<p><img src="/assets/blogImg/heritrix/longerOverrides.png" alt="image"></p>
+<p>C. 完善job信息和本机信息</p>
+<p><img src="/assets/blogImg/heritrix/job_info.png" alt="image"></p>
+<p>修改完成后，点击左下角的’save changes’按钮，保存配置。</p>
+<p><img src="/assets/blogImg/heritrix/save_changes.png" alt="image"></p>
+<p>保存成功后，返回到’myJob’管理界面：</p>
+<p><img src="/assets/blogImg/heritrix/myjob_web.png" alt="image"></p>
+<p>点击’build’按钮，进行build，Job is Ready<br>点击’Launch’按钮, Job is Active:PREPARING<br>点击’checkpoint’按钮, Job is Active:PAUSED<br>点击’unpause’按钮，运行Job，Job is Active:RUNNING</p>
+<p>进入文件目录，我们可以看到文件保存的目录<br>D:\workspace\github\heritrix3\jobs\myjob\20160825031757\warcs 在不断的增大。</p>
+<p>如果要看到每个抓取的页面，可以将配置文件的warcWriter这个bean的class改为：<br>org.archive.modules.writer.MirrorWriterProcessor，这样就下载的网页是以镜像文件的形式保存在，一般存放在项目根目录下的mirror目录下。</p>
+<h2 id="五、部署到Linux系统"><a href="#五、部署到Linux系统" class="headerlink" title="五、部署到Linux系统"></a>五、部署到Linux系统</h2><p>export JAVA_OPTS=-Xmx1724M<br>./heritrix -a admin:admin -b 192.168.8.225</p>
+<h2 id="六、参考资料"><a href="#六、参考资料" class="headerlink" title="六、参考资料"></a>六、参考资料</h2><p>Heritrix3.0教程(三) 开始抓取 <a href="http://guoyunsky.iteye.com/blog/1744456" target="_blank" rel="noopener">http://guoyunsky.iteye.com/blog/1744456</a><br>搜索引擎搭建——Heritrix  <a href="http://blog.wuzx.me/archives/368" target="_blank" rel="noopener">http://blog.wuzx.me/archives/368</a><br>Heritrix中的SURT和SurtPrefixedDecideRule .<br><a href="http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece7631046893b4c4380146d96864968d4e414c4224615023dbfee3a715042889422301cf91e1ab9ab68332a0420b190ca8b4cc9fecf6879877d633047c00149990eafba07628166875b99ed59b0eeab78c4f8c5d2af02049b08532d97f1fb1a474a9d&amp;p=8f769a4780d501f010bd9b7a0757&amp;newp=8b2a971a878511a05ce7822a130a92695803ed603ed4d501298ffe0cc4241a1a1a3aecbf26221006d3c1786501af4e57edf63271340234f1f689df08d2ecce7e70d961&amp;user=baidu&amp;fm=sc&amp;query=Heritrix+SurtPrefixedDecideRule&amp;qid=97273cbc0000dbe4&amp;p1=1" target="_blank" rel="noopener">http://cache.baiducontent.com/c?m=9f65cb4a8c8507ed4fece7631046893b4c4380146d96864968d4e414c4224615023dbfee3a715042889422301cf91e1ab9ab68332a0420b190ca8b4cc9fecf6879877d633047c00149990eafba07628166875b99ed59b0eeab78c4f8c5d2af02049b08532d97f1fb1a474a9d&amp;p=8f769a4780d501f010bd9b7a0757&amp;newp=8b2a971a878511a05ce7822a130a92695803ed603ed4d501298ffe0cc4241a1a1a3aecbf26221006d3c1786501af4e57edf63271340234f1f689df08d2ecce7e70d961&amp;user=baidu&amp;fm=sc&amp;query=Heritrix+SurtPrefixedDecideRule&amp;qid=97273cbc0000dbe4&amp;p1=1</a></p>
+<p>RE: [archive-crawler] Inserting information to MYSQL during crawl<br><a href="https://groups.yahoo.com/neo/groups/archive-crawler/conversations/topics/508" target="_blank" rel="noopener">https://groups.yahoo.com/neo/groups/archive-crawler/conversations/topics/508</a></p>
+<p>写入HBase<br><a href="https://github.com/OpenSourceMasters/hbase-writer" target="_blank" rel="noopener">https://github.com/OpenSourceMasters/hbase-writer</a></p>
+<p>SURT+Rules<br><a href="https://webarchive.jira.com/wiki/display/ARIH/SURT+Rules" target="_blank" rel="noopener">https://webarchive.jira.com/wiki/display/ARIH/SURT+Rules</a><br><a href="https://webarchive.jira.com/wiki/display/ARIH/Expand+Scope+Rules" target="_blank" rel="noopener">https://webarchive.jira.com/wiki/display/ARIH/Expand+Scope+Rules</a></p>
+<p>Heritrix3.0教程(五) 配置文件crawler-beans.cxml介绍<br><a href="http://guoyunsky.iteye.com/blog/1744461" target="_blank" rel="noopener">http://guoyunsky.iteye.com/blog/1744461</a></p>
+<p>Heritrix 3.x API Guide<br><a href="https://webarchive.jira.com/wiki/display/Heritrix/Heritrix+3.x+API+Guide#Heritrix3.xAPIGuide-LaunchJob" target="_blank" rel="noopener">https://webarchive.jira.com/wiki/display/Heritrix/Heritrix+3.x+API+Guide#Heritrix3.xAPIGuide-LaunchJob</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/09/springmvc-framework-8/" rel="next" title="使用IntelliJ IDEA开发SpringMVC网站（八）log4jdbc-remix使用">
+                <i class="fa fa-chevron-left"></i> 使用IntelliJ IDEA开发SpringMVC网站（八）log4jdbc-remix使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/02/15/node-with-express-and-ejs/" rel="prev" title="nodejs+express+ejs简单示例">
+                nodejs+express+ejs简单示例 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、源码下载"><span class="nav-number">1.</span> <span class="nav-text">一、源码下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、启动Heritrix"><span class="nav-number">2.</span> <span class="nav-text">二、启动Heritrix</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、基于Web的用户界面"><span class="nav-number">3.</span> <span class="nav-text">三、基于Web的用户界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、运行第一个爬虫任务的快速指南"><span class="nav-number">4.</span> <span class="nav-text">四、运行第一个爬虫任务的快速指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、部署到Linux系统"><span class="nav-number">5.</span> <span class="nav-text">五、部署到Linux系统</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、参考资料"><span class="nav-number">6.</span> <span class="nav-text">六、参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

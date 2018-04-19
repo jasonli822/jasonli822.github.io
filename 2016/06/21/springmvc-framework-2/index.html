@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,Spring,SpringMVC," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在《Maven与IntelliJ IDEA的完美结合》文章中介绍了在IntelliJ IDEA中如何使用Maven创建一个简单的Java Web项目，《SpringMVC简介》文章中对Spring MVC进行了简单的介绍，有了这些基础，本文在《Maven与IntelliJ IDEA的完美结合》创建的项目基础上，讲解一下如何利用Spring MVC技术来搭建一个Web开发框架。 导入相应的jar包既">
+<meta name="keywords" content="Java,Spring,SpringMVC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用IntelliJ IDEA开发SpringMVC网站（二）框架配置">
+<meta property="og:url" content="http://yoursite.com/2016/06/21/springmvc-framework-2/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="在《Maven与IntelliJ IDEA的完美结合》文章中介绍了在IntelliJ IDEA中如何使用Maven创建一个简单的Java Web项目，《SpringMVC简介》文章中对Spring MVC进行了简单的介绍，有了这些基础，本文在《Maven与IntelliJ IDEA的完美结合》创建的项目基础上，讲解一下如何利用Spring MVC技术来搭建一个Web开发框架。 导入相应的jar包既">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/mvn_repository_spring-web-mvc.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/spring-webmvc_vs_spring-web.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/mvn_repository_spring-web-mvc_4.2.6.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/spring-web-mvc_maven.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/spring-web-mvc_maven_2.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/springmvc-dispatcherservlet-config.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/new-spring-config.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/entry_servlet_name.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/create_new_package.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/new_package_name.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/run_debug_config.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/web_home_page.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/HomeController_Source.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/home_jsp.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/springmvc/web_home_page_2.png">
+<meta property="og:updated_time" content="2016-06-29T09:39:45.512Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用IntelliJ IDEA开发SpringMVC网站（二）框架配置">
+<meta name="twitter:description" content="在《Maven与IntelliJ IDEA的完美结合》文章中介绍了在IntelliJ IDEA中如何使用Maven创建一个简单的Java Web项目，《SpringMVC简介》文章中对Spring MVC进行了简单的介绍，有了这些基础，本文在《Maven与IntelliJ IDEA的完美结合》创建的项目基础上，讲解一下如何利用Spring MVC技术来搭建一个Web开发框架。 导入相应的jar包既">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/springmvc/mvn_repository_spring-web-mvc.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/06/21/springmvc-framework-2/"/>
+
+
+
+
+
+  <title>使用IntelliJ IDEA开发SpringMVC网站（二）框架配置 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/21/springmvc-framework-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用IntelliJ IDEA开发SpringMVC网站（二）框架配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-21T11:00:05+08:00">
+                2016-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在<a href="/2016/03/22/using-maven-in-idea/">《Maven与IntelliJ IDEA的完美结合》</a>文章中介绍了在IntelliJ IDEA中如何使用Maven创建一个简单的Java Web项目，<a href="2016/04/12/springmvc-basic/">《SpringMVC简介》</a>文章中对Spring MVC进行了简单的介绍，有了这些基础，本文在<a href="/2016/03/22/using-maven-in-idea/">《Maven与IntelliJ IDEA的完美结合》</a>创建的项目基础上，讲解一下如何利用Spring MVC技术来搭建一个Web开发框架。</p>
+<h2 id="导入相应的jar包"><a href="#导入相应的jar包" class="headerlink" title="导入相应的jar包"></a>导入相应的jar包</h2><p>既然我们要使用Spring MVC开发，那肯定少不了Spring MVC的相关jar包。如果不使用Maven的话，那就需要去官网下载相关的jar包，然后导入到项目中(我原来开发项目大多都是使用的这种方式，为了保证编译通过，我们会到处去寻找jar包，当编译通过了，在运行的时候，经常会出现”ClassNotFoundException”，难道还差jar包吗？再根据错误信息再去查找和下载jar包；还有个问题就是有时也会出现下载的jar包存在版本不兼容的问题)。</p>
+<p>使用Maven,上面提到的问题很好的得到了解决。</p>
+<p>Maven所做的工作其实很简单，就是自动把你需要的jar包下载到本地，然后关联到项目中来。maven的所有jar包都是保存在几个中央仓库里面的，其中一个最常用的是<a href="http://mvnrepository.com/" target="_blank" rel="noopener">Maven Repository</a> ,即，你需要什么jar包，它就会从仓库中拿给你。那么如何告诉maven需要什么jar包呢？我们看看工程目录，能找到一个pom.xml文件，maven就是靠它来定义需求的，pom.xml代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jasonli<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springmvcdemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>springmvcdemo Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>springmvcdemo<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>主要看dependencies标签，dependencies定义了该项目的依赖关系，其中一个dependency对应一个Maven项目，groupId、artifactId、version分别表示Maven项目的组织名、构件号、版本号，它们三个合起来就是Maven坐标，根据这个坐标可以在Maven仓库中对应唯一的一个Maven构件。现在我们要引入spring mvc相关的jar包，该怎么做了。打开前面提到的<a href="http://mvnrepository.com/" target="_blank" rel="noopener">Maven Repository</a>，搜索spring web，进入如下界面：</p>
+<p><img src="/assets/blogImg/springmvc/mvn_repository_spring-web-mvc.png" alt="image"></p>
+<p>关于spring-webmvc和spring-web的区别，请参考：<a href="http://stackoverflow.com/questions/13533700/maven-dependency-spring-web-vs-spring-webmvc" target="_blank" rel="noopener">http://stackoverflow.com/questions/13533700/maven-dependency-spring-web-vs-spring-webmvc</a></p>
+<p><img src="/assets/blogImg/springmvc/spring-webmvc_vs_spring-web.png" alt="image"></p>
+<p>我们这里要用到Spring MVC框架，所以我们选择Spring Web MVC点击进入，可以看到各版本的使用情况</p>
+<p><img src="/assets/blogImg/springmvc/mvn_repository_spring-web-mvc_4.2.6.png" alt="image"></p>
+<p>选择版本(这里我们使用4.2版本)4.2.6.RELEASE,可以看到其dependency写法如下红框所示：</p>
+<p><img src="/assets/blogImg/springmvc/spring-web-mvc_maven.png" alt="image"></p>
+<p>我们将其复制到pom.xml文件中的dependencies中，这样Maven就会开始自动下载jar包到本地仓库，然后关联到你的项目中，下载完成后，我们展开工程目录中的External Libraries:</p>
+<p><img src="/assets/blogImg/springmvc/spring-web-mvc_maven_2.png" alt="image"></p>
+<p>可以发现，虽然我们只写了一个依赖spring-webmvc，但是它导入了7个jar包，包括spring-core,spring-context,spring-beans,spring-aop，我想这就体现了Maven的好处了，如果我们需要使用Spring MVC开发网站的话，只需要记住重要的包的名字(spring-webmvc)，就可以轻松将所有包导入项目中。</p>
+<blockquote>
+<p>《架构探险—从零开始写Java Web框架》第一章 第6页 有这一样一段话：”提示：可以简单地将Maven依赖理解为jar包，只不过Maven依赖具备传递性，只要配置某个依赖，就能自动获取该依赖的相关依赖。”</p>
+</blockquote>
+<p>在加入servlet-api的依赖，完成后的pom.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.jasonli<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>springmvcdemo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>springmvcdemo Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.apache.org<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- base setting --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.locales</span>&gt;</span>zh_CN<span class="tag">&lt;/<span class="name">project.build.locales</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.jdk</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">project.build.jdk</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- lib versions --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">junit.version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">junit.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">spring.version</span>&gt;</span>4.2.6.RELEASE<span class="tag">&lt;/<span class="name">spring.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servletapi.version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">servletapi.version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- junit --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;junit.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- spring framework --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- servlet api --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;servletapi.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>springmvcdemo<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>至此，jar包导入就完成了，下面我们来搭建Spring MVC.</p>
+<h2 id="搭建Spring-MVC"><a href="#搭建Spring-MVC" class="headerlink" title="搭建Spring MVC"></a>搭建Spring MVC</h2><p>Spring MVC的核心是DispatcherServlet，这个Servlet充当Spring MVC的前端控制器。与其他Servlet一样，DispatcherServlet必须在Web应用程序的web.xml文件中进行配置。所以在应用程序中使用Spring MVC的第一件事情就是将下面的servlet声明放入web.xml中：</p>
+<p><img src="/assets/blogImg/springmvc/springmvc-dispatcherservlet-config.png" alt="image"></p>
+<p>为这个Servlet所设置的servlet-name是很重要的。默认情况下，DispatcherServlet在加载时会从一个基于这个Servlet名字的XML文件中加载Spring应用上下文。在这里因为servlet的名字是mvc-dispatcher，所有DispatcherServlet将尝试从一个名为mvc-dispatcher-servlet.xml的文件(位于应用程序的WEB-INF目录下)来加载应用上下文。</p>
+<p>下面我们来手动创建这个文件：<br><img src="/assets/blogImg/springmvc/new-spring-config.png" alt="image"></p>
+<p><img src="/assets/blogImg/springmvc/entry_servlet_name.png" alt="image"></p>
+<p>新建该xml文件后，点击右上角的configure,出现Setup Frameworks界面，点击OK，这样，IntelliJ IDEA就识别了Spring MVC的配置文件,mvc-dispatcher-servlet.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在web.xml中通过将DispatcherServlet映射到/，声明了它会作为默认的servlet并且会处理所有的请求，包括对静态资源的请求。</p>
+<p>如果你担心DispatcherServlet要处理这些请求的话，那么请稍安勿躁。</p>
+<p>Spring提供了一个很方便的配置，使得我们不必过于担心细节。Spring MVC命名空间包含了一个新的新的 mvc:resources 元素，它会处理静态资源的请求，你所要做的就是在Spring配置文件中对其进行配置，配置后的mvc-dispatcher-servlet.xml文件如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Processing requests for static resources --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> /&gt;</span></span><br><span class="line">       </span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>mvc:resources 建立了一个服务于静态资源的处理器。属性mapping被设置为/resources/**，它包含了Ant风格的统配符以表明路径必须于/resources开始，而且也包括了它的任意子路径。属性location表明了要提供服务的文件位置。以上配置表明，所有以/resources路径开头的请求都会自动由应用程序根目录下的/resources目录提供服务。因此我们在webapp创建resources目录，以后我们的图片、样式表、JavaScript以及其他的静态资源都必须放在应用程序的/resources目录下。</p>
+<p>上面解决了Spring MVC请求资源访问问题，下面我们考虑应用程序的功能该如何处理了。</p>
+<h2 id="编写基本的控制器"><a href="#编写基本的控制器" class="headerlink" title="编写基本的控制器"></a>编写基本的控制器</h2><p>DispatcherServlet需要咨询一个或多个处理器映射来明确地将请求分发给那个控制器。Spring自带了多个处理器映射实现供我们选择，具体如下：</p>
+<ul>
+<li>BeanNameUrlHandlerMapping: 根据控制器Bean的名字将控制器映射到URL。</li>
+<li>ControllerBeanNameHandlerMapping: 与BeanNameUrlHandlerMapping类似，根据控制器Bean的名字将控制器映射到URL。使用该处理器映射实现，Bean的名字不需要遵循URL的约定。</li>
+<li>ControllerClassNameHandlerMpaaing：通过使用控制器的类名作为URL基础将控制器映射到URL。</li>
+<li>DefaultAnnotationHandlerMapping：将请求映射给使用@RequestMapping注解的控制器好控制器方法。</li>
+<li>SimpleUrlHandlerMapping：使用定义在Spring应用上下文的属性集合将控制器映射到URL。</li>
+</ul>
+<p>使用上述这些处理器映射通常只需在Spring中配置一个Bean。如果没有找到处理器映射Bean，DispatcherServlet将创建并使用BeanNameUrlHandlerMapping和DefaultAnnotationHandlerMapping。我们恰巧主要使用基于注解的控制器类，所以DispatcherServlet所提供的DefaultAnnotationHandlerMapping就能很好地满足我们的需求了。 我们在mvc-dispatcher-servlet.xml文件中添加一行配置就能得到Spring MVC所提供的注解启动特性：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>尽管很小，但 mvc:annotation-driven 标签有足够的威力。它注册了多个特性，包括JSR-303校验支持、信息转换已经对域格式化的支持。</p>
+<p><strong>创建Controller</strong></p>
+<p>在src\main\java中新建一个用于保存controller的package</p>
+<p><img src="/assets/blogImg/springmvc/create_new_package.png" alt="image"></p>
+<p><img src="/assets/blogImg/springmvc/new_package_name.png" alt="image"></p>
+<p>在controller包中新建java类HomeController(名称不固定，可任意取),用于处理首页的请求：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springmvcdemo.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Home page controller</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/"</span>,<span class="string">"/home"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">homePage</span><span class="params">(Map&lt;String, Object&gt; model)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"home"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>@Controller注解表明这个类是一个控制器类，这个类是@Component注解的一种具体化，这意味着我们需要在mvc-dispatcher-servlet.xml文件中配置一个 context:component-scan 这样HomeController类(以及将要编写的其他控制器)将会自动被发现并注册为Bean，以下是相关的XML片段：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.springmvcdemo"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>@RequestMapping注解表明这是一个请求处理方法，更确切地说它指明了这个方法要处理”/“或者”/home”路径的请求。</p>
+<p>homePage()方法所做的事情比较简单，就是返回一个String类型的值，这个只是要渲染结果的逻辑视图的名字。控制器类不应该直接参与渲染结果给客户端，而应只是声明一个视图实现，由这个视图实现给客户端渲染数据。</p>
+<p><strong>解析视图</strong><br>处理请求的最后一件必须要做的事情就是为用户渲染输出。这个任务落在了视图实现上-通常会是JSP(JavaServer Page)，但是其他的视图技术(如Velocity或Freemarker)也是可以使用的。为了确定指定的请求使用哪个视图，DispatcherServlet会查找一个视图解析器来讲控制器返回的逻辑视图名称转换成渲染结果的实际视图。</p>
+<p>Spring自带了多个视图解析器实现供选择：</p>
+<ul>
+<li>BeanNameViewResolver 查找<bean>ID与逻辑视图名称相同的view实现</bean></li>
+<li>ContentNegotiatingViewResolver 委托给一个或多个视图解析器，而选择那一个取决于请求的内容类型</li>
+<li>FreeMarkerViewResolver 查找一个基于FreeMarker的模板，它的路径根据加完前缀和后缀的逻辑视图名称来确定</li>
+<li>InternalResourceViewResolver 在Web应用程序的WAR文件中查找视图模板。视图模板的路径根据加完前缀和后缀的逻辑视图名称来确定</li>
+<li>JasperReportsViewResolver 根据加完前缀后后缀的逻辑视图名称来查找一个Jasper Report报表文件</li>
+<li>ResourceBundleViewResolver 根据属性文件(properties file)来查找View实现</li>
+<li>TilesViewResolve 查找通过Tiles模板定义的视图。模板的名字与逻辑视图名称相同</li>
+<li>UrlBasedViewResolver 这是一些其他视图解析器（如InternalResourceViewResolver）的基类。它可以单独使用，但是没有它的子类强大。</li>
+<li>VelocityLayoutViewResolver 它是VelocityViewResolver的子类，它支持通过Spring的VelocityLayoutView来进行页面组合</li>
+<li>VelocityViewResolver 解析基于Velocity的视图，Velocity模板的路径根据加完前缀和后缀的逻辑视图名来确定</li>
+<li>XmlViewResolver 查找在XML文件(/WEB-INF/views.xml)中声明的View实现。这个视图解析器与BeanNameViewResolver很类似，但在这里视图bean的声明与应用程序Spring上下文的其他bean是分开的</li>
+<li>XsltViewResolver 解析基于XSLT的视图，XSLT样式表的路径根据加完前缀和后缀的逻辑视图名称来确定</li>
+</ul>
+<p>这里我们以JSP作为视图实现，假设我们将JSP文件放在”/WEB-INF/views”目录下，基于这样的安排，我们需要在mvc-dispatcher-servlet.xml中配置InternalResourceViewResolver，如下所示:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>当DispatcherServlet要求InternalResourceViewResolver解析视图的时候，它将获取一个逻辑视图名称，添加”/WEB-INF/views/“ 前缀和”*.jsp”后缀。得到的结果就是渲染输出的JSP路径。在内部，InternalResourceViewResolver接下来会将这个路径传递给View对象，View对象将请求传递(dispatch)给JSP。所以，当HomeController返回home作为逻辑视图名称时，它最终会被解析成”/WEB-INF/views/home.jsp”路径。完成以上配置后，mvc-dispatcher-servlet.xml文件如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Processing requests for static resources --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Using Spring MVC provides annotation-driven feature --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Spring Auto scanning components --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.springmvcdemo"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- View Resolver --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>创建JSP文件</strong><br>接下来在WEB-INF目录下创建名为views的目录，并在views目录下面新建home.jsp，代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%@</span> <span class="attr">page</span> <span class="attr">contentType</span>=<span class="string">"text/html;charset=UTF-8"</span> <span class="attr">language</span>=<span class="string">"java"</span> %&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   this is the home page.</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>测试</strong><br>删除原来工程目录下面的 index.jsp 文件</p>
+<p>然后修改一下Tomcat deployment面板里面的Application context 为/，如下图所示</p>
+<p><img src="/assets/blogImg/springmvc/run_debug_config.png" alt="image"></p>
+<p>然后启动Tomcat,启动后浏览器将自动弹出系统首页，如下所示：</p>
+<p><img src="/assets/blogImg/springmvc/web_home_page.png" alt="image"></p>
+<p>测试下Controller向视图传递参数，修改HomeController代码如下：</p>
+<p><img src="/assets/blogImg/springmvc/HomeController_Source.png" alt="image"></p>
+<p>home.jsp页面使用EL表达式获取message的值：</p>
+<p><img src="/assets/blogImg/springmvc/home_jsp.png" alt="image"></p>
+<p>重启Tomcat服务，重启完成后再次访问首页，会发现Controller里面设置的message的值可以在页面上获取到了，如下所示：</p>
+<p><img src="/assets/blogImg/springmvc/web_home_page_2.png" alt="image"></p>
+<p>关于SpringMVC前端传值到Controller与Controller中传值到View解析的问题，请参考：<a href="http://blog.csdn.net/mexican_jacky/article/details/50194667。" target="_blank" rel="noopener">http://blog.csdn.net/mexican_jacky/article/details/50194667。</a></p>
+<p>至此，基于Spring MVC的一个简单的框架就搭建完成了，后面会慢慢对这个框架进行一些完善。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
+          
+            <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/04/12/springmvc-basic/" rel="next" title="SpringMVC简介">
+                <i class="fa fa-chevron-left"></i> SpringMVC简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/23/springmvc-framework-3/" rel="prev" title="使用IntelliJ IDEA开发SpringMVC网站（三）视图使用Freemarker">
+                使用IntelliJ IDEA开发SpringMVC网站（三）视图使用Freemarker <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入相应的jar包"><span class="nav-number">1.</span> <span class="nav-text">导入相应的jar包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建Spring-MVC"><span class="nav-number">2.</span> <span class="nav-text">搭建Spring MVC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写基本的控制器"><span class="nav-number">3.</span> <span class="nav-text">编写基本的控制器</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Android,Retrofit," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考：http://bxbxbai.github.io/2015/12/13/retrofit2-analysis/ 以前使用的是android-async-http作为网络访问库，最近改用了Retrofit2，本文简单的分析下Retrofit2的源代码。 什么是Retrofit2来自Retrofit官网的介绍：  A type-safe HTTP client for Android and J">
+<meta name="keywords" content="Android,Retrofit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="retrofit2 源码初步分析">
+<meta property="og:url" content="http://yoursite.com/2016/03/10/retrofit2-source-analysis/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="参考：http://bxbxbai.github.io/2015/12/13/retrofit2-analysis/ 以前使用的是android-async-http作为网络访问库，最近改用了Retrofit2，本文简单的分析下Retrofit2的源代码。 什么是Retrofit2来自Retrofit官网的介绍：  A type-safe HTTP client for Android and J">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-04-08T07:43:19.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="retrofit2 源码初步分析">
+<meta name="twitter:description" content="参考：http://bxbxbai.github.io/2015/12/13/retrofit2-analysis/ 以前使用的是android-async-http作为网络访问库，最近改用了Retrofit2，本文简单的分析下Retrofit2的源代码。 什么是Retrofit2来自Retrofit官网的介绍：  A type-safe HTTP client for Android and J">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/03/10/retrofit2-source-analysis/"/>
+
+
+
+
+
+  <title>retrofit2 源码初步分析 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/03/10/retrofit2-source-analysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">retrofit2 源码初步分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-03-10T16:00:28+08:00">
+                2016-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>参考：<a href="http://bxbxbai.github.io/2015/12/13/retrofit2-analysis/" target="_blank" rel="noopener">http://bxbxbai.github.io/2015/12/13/retrofit2-analysis/</a></p>
+<p>以前使用的是android-async-http作为网络访问库，最近改用了Retrofit2，本文简单的分析下Retrofit2的源代码。</p>
+<h2 id="什么是Retrofit2"><a href="#什么是Retrofit2" class="headerlink" title="什么是Retrofit2"></a>什么是Retrofit2</h2><p>来自<a href="http://square.github.io/retrofit/" target="_blank" rel="noopener">Retrofit</a>官网的介绍：</p>
+<blockquote>
+<p>A type-safe HTTP client for Android and Java</p>
+</blockquote>
+<p>Retrofit 可以说是目前最流行的类型安全网络库，是Square公司的一个开源项目，通过注解来创建restful API接口。目前2.0版本已经稳定，下文如无特殊说明，均指2.0版本。</p>
+<h2 id="Retrofit2使用步骤"><a href="#Retrofit2使用步骤" class="headerlink" title="Retrofit2使用步骤"></a>Retrofit2使用步骤</h2><p>Retrofit2的使用很简单，主要分为以下几个步骤：</p>
+<ol>
+<li><p>创建Interface接口，通过注解标识客户端与后台约定的API接口</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GitHubService</span> </span>&#123;</span><br><span class="line">	<span class="meta">@GET</span>(<span class="string">"users/&#123;user&#125;/repos"</span>)</span><br><span class="line">	Call&lt;List&lt;Repo&gt;&gt; listRepos(<span class="meta">@Path</span>(<span class="string">"user"</span>) String user);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Retrofit实例，生成Interface的实现类（动态代理实现对象）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">.baseUrl(<span class="string">"https://api.github.com"</span>)</span><br><span class="line">.build();</span><br><span class="line">GitHubService service = retrofit.create(GitHubService.class);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>调用上面创建的实现类中的API方法，取得Call对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(<span class="string">"octocat"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据调用场景异步或同步，执行Call对象的异步或同步方法，异步方法需要传入Callback回调函数</p>
+<ul>
+<li>异步：call.enqueue(Callback callback)</li>
+<li>同步：call.execute()</li>
+</ul>
+</li>
+</ol>
+<h2 id="Retrofit2内部原理"><a href="#Retrofit2内部原理" class="headerlink" title="Retrofit2内部原理"></a>Retrofit2内部原理</h2><ul>
+<li>第一步是根据跟服务器的接口协议文档写注解接口。（Retrofit非常巧妙的用注解来描述一个HTTP请求）</li>
+<li><p>第二步根据接口创建相关执行代理对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The Retrofit class generates an implementation of the GitHubService interface.</span></span><br><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">.baseUrl(<span class="string">"https://api.github.com"</span>)</span><br><span class="line">.build();</span><br><span class="line">GitHubService service = retrofit.create(GitHubService.class);</span><br></pre></td></tr></table></figure>
+<p>给Retrofit对象传了一个<code>GitHubService</code>接口的Class对象，怎么返回一个<code>GitHubService</code>的对象呢？我们来看看<code>create</code>方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Single-interface proxy creation guarded by parameter safety.</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">create</span><span class="params">(<span class="keyword">final</span> Class&lt;T&gt; service)</span> </span>&#123;</span><br><span class="line">  Utils.validateServiceInterface(service);</span><br><span class="line">  <span class="keyword">if</span> (validateEagerly) &#123;</span><br><span class="line">    eagerlyValidateMethods(service);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (T) Proxy.newProxyInstance(service.getClassLoader(), <span class="keyword">new</span> Class&lt;?&gt;[] &#123; service &#125;,</span><br><span class="line">      <span class="keyword">new</span> InvocationHandler() &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">final</span> Platform platform = Platform.get();</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object... args)</span></span></span><br><span class="line"><span class="function">            <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">          <span class="comment">// If the method is a method from Object then defer to normal invocation.</span></span><br><span class="line">          <span class="keyword">if</span> (method.getDeclaringClass() == Object.class) &#123;</span><br><span class="line">            <span class="keyword">return</span> method.invoke(<span class="keyword">this</span>, args);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (platform.isDefaultMethod(method)) &#123;</span><br><span class="line">            <span class="keyword">return</span> platform.invokeDefaultMethod(method, service, proxy, args);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> loadMethodHandler(method).invoke(args);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p> <code>create</code>方法重要就是返回了一个动态代理对象。</p>
+<p>  <strong>动态代理是个什么东西?</strong><br>  Java 动态代理就是Java开发给了开发人员一种可能：当你要调用某个类的方法前，插入你想要执行的代码。<br>  比如你要执行某个操作前，你必须要判断这个用户是否登录。</p>
+<p>  <strong>为什么要使用动态代理</strong><br>  你看上面的代码，获取数据的代码就是这句：<br>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Each Call from the created GitHubService can make a synchronous or asynchronous HTTP request to the remote webserver.</span></span><br><span class="line">Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(<span class="string">"octocat"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>  上面的<code>service</code>对象其实是一个动态代理对象，并不是一个真正的<code>GitHubService</code>接口的implements对象，当<code>service</code>对象调用<code>listRepos</code>方法时，执行的是动态代理方法，此时，动态代理发挥了它的作用，你看上去是调用了<code>listRepos</code>方法，其实此时Retrofit把<code>GitHubService</code>接口翻译成一个HTTP请求，也就是Retrofit中的MethodHandler对象，这个对象包含了：</p>
+<pre><code>1) OkHttpClient：发送网络请求的工具
+2) RequestFactory：包含了HTTP请求的URL、Header信息，MediaType、Method以及RequestAction数组
+3) CallAdapter：HTTP请求返回数据的类型
+4) Converter：数据转换器
+</code></pre><ul>
+<li>第三步Retrofit在你调用<code>Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);</code>后为你生成了一个Http请求，</li>
+<li>第四步你调用<code>call.enqueue</code>方法时就发送了这个请求，然后你就可以处理Response的数据了<br>从原来上讲，就是这样的。</li>
+</ul>
+<h2 id="Retrofit2源码分析"><a href="#Retrofit2源码分析" class="headerlink" title="Retrofit2源码分析"></a>Retrofit2源码分析</h2><p>想要弄清楚Retrofit的细节，先来看一下Retrofit源码的组成：</p>
+<ol>
+<li>一个<code>retrofit2.http</code>包，里面全部是定义HTTP请求的注解，比如<code>GET</code>、<code>POST</code>、<code>PUT</code>、<code>DELETE</code>、<code>Headers</code>、<code>Path</code>、<code>Query</code>等等</li>
+<li>余下的<code>retrofit2</code>包中十几个类和接口就是全部retrofit的代码了，代码不是很多，retrofit把网络请求这部分功能全部交给了OkHttp了</li>
+</ol>
+<h3 id="Retrofit2接口"><a href="#Retrofit2接口" class="headerlink" title="Retrofit2接口"></a>Retrofit2接口</h3><p>下面几个接口需要了解一下</p>
+<p><code>Callback&lt;T&gt;</code><br>这个接口是retrofit请求数据返回的接口，有下面两个方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Callback</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Invoked for a received HTTP response.</span></span><br><span class="line"><span class="comment">   * &lt;p&gt;</span></span><br><span class="line"><span class="comment">   * Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.</span></span><br><span class="line"><span class="comment">   * Call &#123;<span class="doctag">@link</span> Response#isSuccess()&#125; to determine if the response indicates success.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(Call&lt;T&gt; call, Response&lt;T&gt; response)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Invoked when a network exception occurred talking to the server or when an unexpected</span></span><br><span class="line"><span class="comment">   * exception occurred creating the request or processing the response.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">onFailure</span><span class="params">(Call&lt;T&gt; call, Throwable t)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>Converter&lt;F, T&gt;</code><br>这个接口主要的作用就是讲HTTP返回的数据解析成Java对象，主要有Xml、Gson等等，我们可以在创建Retrofit对象时添加需要使用的<code>Converter</code>实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">.baseUrl(<span class="string">"https://api.github.com"</span>)</span><br><span class="line">.addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">.build();</span><br></pre></td></tr></table></figure></p>
+<p><code>Call&lt;T&gt;</code><br>这个接口主要的作用是发送一个HTTP请求，Retrofit默认的实现是<code>OkHttpCall&lt;T&gt;</code>，我们也可以根据实际情况实现自己的Call类。</p>
+<p><code>CallAdater&lt;T&gt;</code><br><code>CallAdapter</code> 中属性只有 <code>responseType</code>一个，还有一个<code>&lt;R&gt; T adapter(Call&lt;R&gt; call)</code>方法，这个接口的实现类也只有一个，<code>DefaultCallAdapter</code>。这个方法的主要作用就是将<code>Call</code>对象转换成另一个对象，可能是为了支持RxJava才设计的这个类的吧。</p>
+<h2 id="Retrofit2的运行"><a href="#Retrofit2的运行" class="headerlink" title="Retrofit2的运行"></a>Retrofit2的运行</h2><p>上面分析到<code>GitHubService service = retrofit.create(GitHubService.class);</code>代码返回了一个动态代理对象，而执行<code>Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);</code>代码返回了一个<code>OkHttpCall</code>对象，拿到这个Call对象才能执行HTTP请求。<br>其中后一句代码执行了一个非常复杂的过程</p>
+<p>当执行<code>listRepos</code>方法时，Retrofit其实是执行了动态代理的<code>InvocationHandler</code>对象，最后会创建一个<code>MethodHandler</code>对象，这个对象很重要<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> MethodHandler <span class="title">create</span><span class="params">(Retrofit retrofit, Method method)</span> </span>&#123;</span><br><span class="line">  CallAdapter&lt;?&gt; callAdapter = createCallAdapter(method, retrofit);</span><br><span class="line">  Type responseType = callAdapter.responseType();</span><br><span class="line">  <span class="keyword">if</span> (responseType == Response.class || responseType == okhttp3.Response.class) &#123;</span><br><span class="line">    <span class="keyword">throw</span> Utils.methodError(method, <span class="string">"'"</span></span><br><span class="line">        + Types.getRawType(responseType).getName()</span><br><span class="line">        + <span class="string">"' is not a valid response body type. Did you mean ResponseBody?"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Converter&lt;ResponseBody, ?&gt; responseConverter =</span><br><span class="line">      createResponseConverter(method, retrofit, responseType);</span><br><span class="line">  RequestFactory requestFactory = RequestFactoryParser.parse(method, responseType, retrofit);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> MethodHandler(retrofit.callFactory(), requestFactory, callAdapter,</span><br><span class="line">      responseConverter);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的代码就是创建一个<code>MethodHandler</code>对象，一个<code>MethodHandler</code>对象中包含了4个对象</p>
+<h4 id="1-OkHttpClient"><a href="#1-OkHttpClient" class="headerlink" title="1. OkHttpClient"></a>1. OkHttpClient</h4><p>这个是Retrofit默认生成的</p>
+<h4 id="2-RequestFactory"><a href="#2-RequestFactory" class="headerlink" title="2. RequestFactory"></a>2. RequestFactory</h4><p>通过<code>RequestFactory requestFactory = RequestFactoryParser.parse(method, responseType, retrofit);</code>生成，主要作用就是<strong>解析整个Http请求的数据</strong><br>主要原料是解析一个接口，比如上面的<code>GitHubService</code>接口，得到整个Http请求的全部信息，还会通过<code>@Path</code>注解拼接Url.</p>
+<h4 id="3-CallAdapter"><a href="#3-CallAdapter" class="headerlink" title="3. CallAdapter"></a>3. CallAdapter</h4><p>获取<code>CallAdapter</code>的代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> CallAdapter&lt;?&gt; createCallAdapter(Method method, Retrofit retrofit) &#123;</span><br><span class="line">  Type returnType = method.getGenericReturnType();</span><br><span class="line">  <span class="keyword">if</span> (Utils.hasUnresolvableType(returnType)) &#123;</span><br><span class="line">    <span class="keyword">throw</span> Utils.methodError(method,</span><br><span class="line">        <span class="string">"Method return type must not include a type variable or wildcard: %s"</span>, returnType);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (returnType == <span class="keyword">void</span>.class) &#123;</span><br><span class="line">    <span class="keyword">throw</span> Utils.methodError(method, <span class="string">"Service methods cannot return void."</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  Annotation[] annotations = method.getAnnotations();</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> retrofit.callAdapter(returnType, annotations);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (RuntimeException e) &#123; <span class="comment">// Wide exception range because factories are user code.</span></span><br><span class="line">    <span class="keyword">throw</span> Utils.methodError(e, method, <span class="string">"Unable to create call adapter for %s"</span>, returnType);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们可以在创建Retrofit对象时，添加想要的<code>CallAdapter</code>，获取<code>CallAdapter</code>的方式也是从<code>Retrofit</code>对象中获取</p>
+<h4 id="4-Converter"><a href="#4-Converter" class="headerlink" title="4. Converter"></a>4. Converter</h4><p>获得Converter对象和上面的原来类似<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> Converter&lt;ResponseBody, ?&gt; createResponseConverter(Method method,</span><br><span class="line">    Retrofit retrofit, Type responseType) &#123;</span><br><span class="line">  Annotation[] annotations = method.getAnnotations();</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> retrofit.responseBodyConverter(responseType, annotations);</span><br><span class="line">  &#125; <span class="keyword">catch</span> (RuntimeException e) &#123; <span class="comment">// Wide exception range because factories are user code.</span></span><br><span class="line">    <span class="keyword">throw</span> Utils.methodError(e, method, <span class="string">"Unable to create converter for %s"</span>, responseType);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>创建这4个对象的目的就是为了执行下面这句代码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Object <span class="title">invoke</span><span class="params">(Object... args)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> callAdapter.adapt(</span><br><span class="line">      <span class="keyword">new</span> OkHttpCall&lt;&gt;(callFactory, requestFactory, args, responseConverter));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个也就是<code>Call&lt;List&lt;Repo&gt;&gt; repos = service.listRepos(&quot;octocat&quot;);</code>返回的<code>Call</code>对象。<br>最后调用<code>Call</code>对象的<code>execute</code>或<code>enqueue(Callback&lt;T&gt; callback)</code>方法，就能发送一个Http请求了。Retrofit提供了同步和异步两种HTTP请求方式。</p>
+<h2 id="如何在Retrofit中使用RxJava"><a href="#如何在Retrofit中使用RxJava" class="headerlink" title="如何在Retrofit中使用RxJava"></a>如何在Retrofit中使用RxJava</h2><p>RxJava是由Netflix开发的响应式扩展(Reactive Extensions)的Java实现。由于Retrofit设计的扩展性非常强，我们只需要改变一下<code>CallAdapter</code>就可以了<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Retrofit retrofit = <span class="keyword">new</span> Retrofit.Builder()</span><br><span class="line">  .baseUrl(<span class="string">"https://api.github.com"</span>)</span><br><span class="line">  .addConverterFactory(ProtoConverterFactory.create())</span><br><span class="line">  .addConverterFactory(GsonConverterFactory.create())</span><br><span class="line">  .addCallAdapterFactory(RxJavaCallAdapterFactory.create())</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure></p>
+<p>上面代码创建了一个<code>Retrofit</code>对象，支持Proto和Gson两种数据格式，并且还支持RxJava</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p><strong>Retrofit</strong>非常巧妙的用注解来描述一个HTTP请求，将一个HTTP请求抽象成一个Java接口，然后用了动态代理方式，动态的将这个接口注解“翻译”成一个HTTP请求，最后再执行这个HTTP请求。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android/" rel="tag"># Android</a>
+          
+            <a href="/tags/Retrofit/" rel="tag"># Retrofit</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/11/java-callback-analysis/" rel="prev" title="Java 中CallBack的理解">
+                Java 中CallBack的理解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Retrofit2"><span class="nav-number">1.</span> <span class="nav-text">什么是Retrofit2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit2使用步骤"><span class="nav-number">2.</span> <span class="nav-text">Retrofit2使用步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit2内部原理"><span class="nav-number">3.</span> <span class="nav-text">Retrofit2内部原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit2源码分析"><span class="nav-number">4.</span> <span class="nav-text">Retrofit2源码分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Retrofit2接口"><span class="nav-number">4.1.</span> <span class="nav-text">Retrofit2接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Retrofit2的运行"><span class="nav-number">5.</span> <span class="nav-text">Retrofit2的运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-OkHttpClient"><span class="nav-number">5.0.1.</span> <span class="nav-text">1. OkHttpClient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-RequestFactory"><span class="nav-number">5.0.2.</span> <span class="nav-text">2. RequestFactory</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CallAdapter"><span class="nav-number">5.0.3.</span> <span class="nav-text">3. CallAdapter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Converter"><span class="nav-number">5.0.4.</span> <span class="nav-text">4. Converter</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在Retrofit中使用RxJava"><span class="nav-number">6.</span> <span class="nav-text">如何在Retrofit中使用RxJava</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">7.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
