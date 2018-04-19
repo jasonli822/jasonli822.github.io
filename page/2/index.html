@@ -472,6 +472,165 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/12/springmvc-basic/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2016/04/12/springmvc-basic/" itemprop="url">SpringMVC简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-12T16:11:10+08:00">
+                2016-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Spring框架的介绍"><a href="#Spring框架的介绍" class="headerlink" title="Spring框架的介绍"></a>Spring框架的介绍</h1><p>Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架或集成其他MVC开发框架，如Struts1，Struts2等。（摘自百度百科）</p>
+<h3 id="SpringMVC框架图"><a href="#SpringMVC框架图" class="headerlink" title="SpringMVC框架图"></a>SpringMVC框架图</h3><p><img src="/assets/blogImg/springmvc/springmvc-flow.png" alt="image"></p>
+<h3 id="SpringMVC接口解释"><a href="#SpringMVC接口解释" class="headerlink" title="SpringMVC接口解释"></a>SpringMVC接口解释</h3><p><strong>DispatcherServlet接口：</strong> Spring提供的前端控制器，所有请求都有经过它来统一分发。在DispatcherServlet将请求分发给Spring Controller之前，需要借助Spring提供的HandlerMapping定位到具体的Controller。</p>
+<p><strong>HandlerMapping接口：</strong> 能够完成客户请求到Controller映射。</p>
+<p><strong>Controller接口：</strong> 需要为并发用户处理上述请求，因此实现Controller接口时，必须保证线程安全并且可重用。Controller将处理用户请求，这和Struts Action扮演的角色是一致的。一旦Controller处理完用户请求，则返回ModelAndView对象给DispatcherServlet前端控制器，ModelAndView中包含了模型(Model)和视图(View)。从宏观角度考虑，DispatcherServlet是整个Web应用的控制器：从微观考虑，Controller是单个HTTP请求处理过程中的控制器，而ModelAndView是HTTP请求过程中返回的模型(Model)和视图（View）。</p>
+<p><strong>ViewResolver接口：</strong><br>Spring提供的视图解析器（ViewResolver）在Web应用中查找View对象，从而将相应结果渲染给客户。</p>
+<p><strong>SpringMVC运行原理</strong></p>
+<ol>
+<li>客户端请求提交到DispatcherServlet</li>
+<li>由DispatcherServlet控制器查询一个或多个HandlerMapping,找到处理请求的Controller</li>
+<li>由DispatcherServlet将请求提交到Controller</li>
+<li>Controller调用业务逻辑处理后，返回ModelAndView</li>
+<li>DispatcherServlet查询一个或多个ViewResoler视图解析器，找到ModelAndView指定的视图</li>
+<li>视图负责将结果显示到客户端 </li>
+</ol>
+<hr>
+<p>参考资料：<br><a href="http://www.blogjava.net/xiaohuzi2008/archive/2012/07/24/383833.html" target="_blank" rel="noopener">http://www.blogjava.net/xiaohuzi2008/archive/2012/07/24/383833.html</a> </p>
+<p>文中难免有误，还请读者指出。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/12/springmvc-source-analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -592,165 +751,6 @@
 <p>之所以要用一个java世界最基础的Object对象引用来引用这个handler对象，是因为连特定的接口也不希望绑定在这个handler对象上，从而使handler对象具有最大程度的选择性和灵活性。</p>
 <p>我们常说，一个框架最高层级的抽象是接口，但是这里SpringMVC更进了一步。在最后的处理对象上面，SpringMVC没有对它做任何限制，<font color="#FF0000">只要是java世界中的对象，都可以用来作为最后的处理对象，来生成视图</font>。所以我们可以将另外一个MVC框架集成到SpringMVC中，也就是为什么SpringMVC官方文档中，居然还有集成其他变现层框架的内容。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.cnblogs.com/fangjian0423/p/springMVC-dispatcherServlet.html" target="_blank" rel="noopener">http://www.cnblogs.com/fangjian0423/p/springMVC-dispatcherServlet.html</a><br><a href="http://my.oschina.net/lichhao/blog/104943" target="_blank" rel="noopener">http://my.oschina.net/lichhao/blog/104943</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/04/12/springmvc-basic/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/totoro.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jasonli822的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/04/12/springmvc-basic/" itemprop="url">SpringMVC简介</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-04-12T16:11:10+08:00">
-                2016-04-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Spring框架的介绍"><a href="#Spring框架的介绍" class="headerlink" title="Spring框架的介绍"></a>Spring框架的介绍</h1><p>Spring MVC属于SpringFrameWork的后续产品，已经融合在Spring Web Flow里面。Spring 框架提供了构建 Web 应用程序的全功能 MVC 模块。使用 Spring 可插入的 MVC 架构，从而在使用Spring进行WEB开发时，可以选择使用Spring的SpringMVC框架或集成其他MVC开发框架，如Struts1，Struts2等。（摘自百度百科）</p>
-<h3 id="SpringMVC框架图"><a href="#SpringMVC框架图" class="headerlink" title="SpringMVC框架图"></a>SpringMVC框架图</h3><p><img src="/assets/blogImg/springmvc/springmvc-flow.png" alt="image"></p>
-<h3 id="SpringMVC接口解释"><a href="#SpringMVC接口解释" class="headerlink" title="SpringMVC接口解释"></a>SpringMVC接口解释</h3><p><strong>DispatcherServlet接口：</strong> Spring提供的前端控制器，所有请求都有经过它来统一分发。在DispatcherServlet将请求分发给Spring Controller之前，需要借助Spring提供的HandlerMapping定位到具体的Controller。</p>
-<p><strong>HandlerMapping接口：</strong> 能够完成客户请求到Controller映射。</p>
-<p><strong>Controller接口：</strong> 需要为并发用户处理上述请求，因此实现Controller接口时，必须保证线程安全并且可重用。Controller将处理用户请求，这和Struts Action扮演的角色是一致的。一旦Controller处理完用户请求，则返回ModelAndView对象给DispatcherServlet前端控制器，ModelAndView中包含了模型(Model)和视图(View)。从宏观角度考虑，DispatcherServlet是整个Web应用的控制器：从微观考虑，Controller是单个HTTP请求处理过程中的控制器，而ModelAndView是HTTP请求过程中返回的模型(Model)和视图（View）。</p>
-<p><strong>ViewResolver接口：</strong><br>Spring提供的视图解析器（ViewResolver）在Web应用中查找View对象，从而将相应结果渲染给客户。</p>
-<p><strong>SpringMVC运行原理</strong></p>
-<ol>
-<li>客户端请求提交到DispatcherServlet</li>
-<li>由DispatcherServlet控制器查询一个或多个HandlerMapping,找到处理请求的Controller</li>
-<li>由DispatcherServlet将请求提交到Controller</li>
-<li>Controller调用业务逻辑处理后，返回ModelAndView</li>
-<li>DispatcherServlet查询一个或多个ViewResoler视图解析器，找到ModelAndView指定的视图</li>
-<li>视图负责将结果显示到客户端 </li>
-</ol>
-<hr>
-<p>参考资料：<br><a href="http://www.blogjava.net/xiaohuzi2008/archive/2012/07/24/383833.html" target="_blank" rel="noopener">http://www.blogjava.net/xiaohuzi2008/archive/2012/07/24/383833.html</a> </p>
-<p>文中难免有误，还请读者指出。</p>
 
           
         
@@ -2325,6 +2325,19 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
 
 
 
