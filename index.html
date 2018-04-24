@@ -242,6 +242,314 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/blockchain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/24/blockchain/" itemprop="url">区块链技术简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T10:11:48+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="什么是区块链"><a href="#什么是区块链" class="headerlink" title="什么是区块链"></a>什么是区块链</h2><p><span style="color:red;">区块链本质上是一个去中心化的分布式账本数据库，是比特币的底层技术。</span></p>
+<p>位于全球计算机节点，部分会作为区块链的“小账本”</p>
+<p>所有的小账本按照一定的规则连在一起，形成区块链</p>
+<p>每个账本发生的业务不同，但按照相同的规则同步合并信息，这样的体系就是区块链系统。</p>
+<h2 id="区块链的优势"><a href="#区块链的优势" class="headerlink" title="区块链的优势"></a>区块链的优势</h2><p>A转钱给B -&gt; 先记在一个小账本上 -&gt; 通知所有的小账本信息更新 -&gt; 各个账本都确认信息受信 -&gt; 各个小账本信息同步 -&gt; 交易完成</p>
+<h3 id="分布式去中心化"><a href="#分布式去中心化" class="headerlink" title="分布式去中心化"></a>分布式去中心化</h3><p><img src="/assets/blogImg/blockchain/Centralized-payment-methods.png" alt="image"></p>
+<p><img src="/assets/blogImg/blockchain/Decentralized-payment-methods.png" alt="image"></p>
+<h3 id="匿名性"><a href="#匿名性" class="headerlink" title="匿名性"></a>匿名性</h3><p><img src="/assets/blogImg/blockchain/Anonymity.png" alt="image"></p>
+<h2 id="区块链难以克服的缺点"><a href="#区块链难以克服的缺点" class="headerlink" title="区块链难以克服的缺点"></a>区块链难以克服的缺点</h2><p>效率问题</p>
+<p>人才成本高 - 密码学，计算数学，人工智能</p>
+<h2 id="举例理解"><a href="#举例理解" class="headerlink" title="举例理解"></a>举例理解</h2><p><a href="https://mp.weixin.qq.com/s/PUWLS-J5UmYV1pUsV3ZUpA" target="_blank" rel="noopener">中本聪算啥？六百多年前区块链项目就在中国落地了！| 财链社</a> 文章对理解什么式区块链讲解的很形象，摘抄如下:</p>
+<p>周末到了，张三准备约上几个好友出来打麻将，于是就打电话约了李四、王五、赵六组了个麻将局。<br>而张三想打麻将的想法就相当于创建一个区块，而他再以打电话点对点的形式通知了李四、王五、赵六这个动作就做到了<b>“去中心化”的点对点传输。</b>  </p>
+<p>于是张三、李四、王五、赵六就形成了共识，坐到了一起开始打麻将。四个人会分别摸13张随机分配的麻将，通过摸一张打一张的形式来将麻将规范化的排序来和牌。<b>而这里面摸打的动作就可以理解为“挖矿”，四个人就是“矿工”，108张麻将就是哈希值。而胡牌就是碰撞出了正确的哈希值，就可以获得相应的筹码奖励，也就是所谓的比特币。</b></p>
+<p>那么问题来了，为什么其他三个人都会主动给和牌的人奖励呢？那是因为这三个人都自动达成了共识，这人确实赢了，大家都记录了这笔账，想抵赖是不行的，不然以后传出去这人品不行，就没人再和他一起打麻将了，毕竟圈子很重要。</p>
+<p>同时，在大家达成共识时，我们看不到任何中介或者第三方出来评判谁赢了，大家给赢得人的奖励也不需要通过第三方转交给他，都是直接点对点交易，<b>这一过程就是去中心化。</b></p>
+<p>四个人（矿工）各自记录了第一局的战绩，王五大胡自摸七小对，赵六杠了张三的幺鸡，记录完成后就生成了一个完整的区块，但要记住，这才只是第一局，在整个区块链上，这才仅仅是一个节点，如果那天一共打了20盘麻将，<b>也就是20个节点（区块），20个区块连接在一起就形成了一个完整账本，这就是区块链。</b></p>
+<p>因为这个账本每人都有一个，所以就是<b>分布式账本</b>，目的就是为了防止有人篡改记录，打到最后，谁输谁赢一目了然。</p>
+<p>整个过程，将区块链技术体现得淋漓尽致。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://mp.weixin.qq.com/s/PUWLS-J5UmYV1pUsV3ZUpA" target="_blank" rel="noopener">中本聪算啥？六百多年前区块链项目就在中国落地了！| 财链社</a><br><a href="https://sale.jd.com/act/dqtmRyTIuQkFHG4.html?cu=true&amp;utm_source=segmentfault.com&amp;utm_medium=tuiguang&amp;utm_campaign=t_1000470991_&amp;utm_term=7e5d183b70ed4a98ad0721a8374ffa9f&amp;abt=3" target="_blank" rel="noopener">区块链-京东图书专题活动</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/23/microservices-and-springcloud-introduction/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/23/microservices-and-springcloud-introduction/" itemprop="url">微服务与Spring Cloud简介</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-23T07:18:56+08:00">
+                2018-04-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Spring-Cloud/" itemprop="url" rel="index">
+                    <span itemprop="name">Spring Cloud</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="一、首先谈谈传统架构和微服务架构"><a href="#一、首先谈谈传统架构和微服务架构" class="headerlink" title="一、首先谈谈传统架构和微服务架构"></a>一、首先谈谈传统架构和微服务架构</h2><p>传统的系统架构是单一架构模式。这种架构模式就是把应用整体打包部署，具体的样式依赖本身应用采用的语言，如果采用java语言，自然你会打包成war包，部署在Tomcat或者Jetty这样的应用服务器上，如果你使用spring boot还可以打包成jar包部署。其他还有Rails和Node.js应用以目录层次的形式打包。<br><img src="/assets/blogImg/springcloud/monomer_application.png" alt="image"></p>
+<p>微服务架构则是将单个的整体应用程序分割成更小的项目关联的独立的服务。一个服务通常实现一组独立的特性或功能，包含自己的业务逻辑和适配器。各个微服务之间的关联通过暴露api来实现。这些独立的微服务不需要部署在同一个虚拟机，同一个系统和同一个应用服务器中。</p>
+<h2 id="二、为什么需要微服务架构？"><a href="#二、为什么需要微服务架构？" class="headerlink" title="二、为什么需要微服务架构？"></a>二、为什么需要微服务架构？</h2><p>单一架构模式在项目初期很小的时候开发方便，测试方便，部署方便，运行良好。可是当应用随着时间的推进，加入的功能越来越多，最终会变得巨大，一个项目中很有可能数百万行的代码，互相之间繁琐的jar包。</p>
+<p>1、    不再适用敏捷开发，过于复杂，任何开发者都不能够完全理解，修复漏洞和实现新功能变得困难和耗时。</p>
+<p>2、    规模越大，启动时间越长，自然会拖慢开发进度，一个小功能的修改部署起来变得困难，必须重新部署整个应用。</p>
+<p>3、    系统的不同的模块的需要不同的特定的虚拟机环境时，由于是整体应用，那么只能折中选择。</p>
+<p>4、    任意模块的漏洞或者错误都会影响这个应用，降低系统的可靠性</p>
+<p>5、    还有一个如果想整体应用采用新的技术，新的框架或者语言，那是不可能的。</p>
+<p>微服务一词来自Martin Fowler的Microservices一文，微服务是一种架构风格，将单体应用划分为小型的服务单元，微服务使用HTTP的API进行资源访问与操作。</p>
+<p>如果采用微服务架构模式，则可以解决单一架构模式带来的系统复杂性。主要包括以下几个好处：</p>
+<p>1、    由于每个服务都是独立并且微小的，由单独的团队负责，仍然可以采用敏捷开发模式，自由的选择合适的技术，甚至可以重写老服务，当然都要遵守统一的API约定。</p>
+<p>2、    每一个微服务都是独立部署的，可以进行快速迭代部署，根据各自服务需求选择合适的虚拟机和使用最匹配的服务资源要求的硬件。</p>
+<p>3、    整体应用程序被分解成可管理的模块和服务，单个的服务可以更快的开发、更简单的理解和维护。</p>
+<p>4、    一些需要进行负载均衡的服务可以部署在多个云虚拟机上，加入NGINX这样的负载均衡器在多个实例之间分发请求，这样不需要整个应用进行负载均衡了。</p>
+<p>每个后端服务暴露一套REST API，大部分服务调用其他服务提供的API。每个服务都有自己的数据库模式，而不是共享单个数据库模式。尽管这会造成某些数据的冗余，但是对于微服务架构这个独立数据库模式是必要的，确保了独立服务之间的松散耦合。</p>
+<p>以上介绍的微服务架构模式表面上类似于SOA，两种架构都包含一组服务。可以认为微服务架构是不包括Web服务规范（WS-）、企业服务总线（ESB）的SOA。基于微服务的应用倾向于使用更简单轻量级的协议，比如 REST 而不是 WS-。微服务自己实现类似 ESB 的功能并且拒绝 SOA 的其他部分，比如规范模式的概念。</p>
+<p>（SOA架构侧重于将每个单体应用的服务集成到企业服务总线ESB上，而微服务做得更加彻底，强调将整个模块变成服务组件，微服务对模块的划分粒度可能会更细。）</p>
+<p><img src="/assets/blogImg/springcloud/SOA_Structure.png" alt="image"></p>
+<p><img src="/assets/blogImg/springcloud/Microservices_Structure.png" alt="image"></p>
+<h2 id="三、微服务架构的不足"><a href="#三、微服务架构的不足" class="headerlink" title="三、微服务架构的不足"></a>三、微服务架构的不足</h2><p>1、  微服务应用作为分布式系统带来了复杂性。当应用是整体应用程序时，模块之间调用都在应用之内，即使进行分布式部署，依然在应用内调用。可是微服务是多个独立的服务，当进行模块调用的时候，分布式将会麻烦。</p>
+<p>2、  多个独立数据库，事务的实现更具挑战性。</p>
+<p>3、  测试微服务变得复杂，当一个服务依赖另外一个服务时，测试时候需要另外一个服务的支持。</p>
+<p>4、  部署基于微服务的应用也很复杂，整体应用程序部署只需要部署在一组相同的服务器上，在这些服务前面加入传统的负载均衡器即可。独立服务的不是讲变得复杂，需要更高的自动化形式。</p>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>单体式的架构更适合轻量级的简单应用。如果你用它来开发复杂应用，那真的会很糟糕。微服务架构模式可以用来构建复杂应用，当然，这种架构模型也有自己的缺点和挑战。</p>
+<h2 id="五、Spring-Cloud简介"><a href="#五、Spring-Cloud简介" class="headerlink" title="五、Spring Cloud简介"></a>五、Spring Cloud简介</h2><p>Spring Cloud是一个集成了众多开源的框架，利用Spring Boot的开发便利性实现了服务治理、服务注册与发现、负载均衡、数据监控，REST API发布方式等，基本囊括了分布式框架所需要的所有功能。是一套易开放、易部署、易维护的分布式开发工具包。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://www.cnblogs.com/hongxf1990/p/6491014.html" target="_blank" rel="noopener">https://www.cnblogs.com/hongxf1990/p/6491014.html</a></li>
+<li>《疯狂Spring Cloud微服务架构实战》</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/29/expcetion-tracking-with-sentry/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1683,392 +1991,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/29/springmvc-framework-4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/totoro.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jasonli822的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/29/springmvc-framework-4/" itemprop="url">使用IntelliJ IDEA开发SpringMVC网站（四）集成MyBatis</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-29T11:16:26+08:00">
-                2016-06-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在上一篇<a href="/2016/06/23/springmvc-framework-3/">《使用IntelliJ IDEA开发SpringMVC网站（三）视图使用Freemarker》</a>文章中我们使用FreeMarker替换了默认的JSP作为视图的实现，本文我们看看如何集成MyBatis。</p>
-<p>MyBatis 本是apache的一个开源项目iBatis, 2010年这个项目由apache software foundation 迁移到了google code，并且改名为MyBatis 。MyBatis是一个基于Java的持久层框架。iBATIS提供的持久层框架包括SQL Maps和Data Access Objects（DAO）MyBatis 消除了几乎所有的JDBC代码和参数的手工设置以及结果集的检索。MyBatis 使用简单的 XML或注解用于配置和原始映射，将接口和 Java 的POJOs（Plain Old Java Objects，普通的 Java对象）映射成数据库中的记录。</p>
-<p>关于MyBatis的更多介绍请参考查阅官方文档:<a href="http://www.mybatis.org/mybatis-3/zh/index.html" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/index.html</a></p>
-<p>要在Spring中集成MyBatis，我们还需要用到<strong>MyBatis-Spring</strong>。</p>
-<p><strong>MyBatis-Spring 是什么</strong></p>
-<p>MyBatis-Spring 会帮助你将 MyBatis 代码无缝地整合到 Spring 中。 使用这个类库中的类, Spring 将会加载必要的 MyBatis 工厂类和 session 类。 这个类库也提供一个简单的方式来注入 MyBatis 数据映射器和 SqlSession 到业务层的 bean 中。 而且它也会处理事务, 翻译 MyBatis 的异常到 Spring 的 DataAccessException 异常(数据访问异常,译者注)中。最终,它并 不会依赖于 MyBatis,Spring 或 MyBatis-Spring 来构建应用程序代码。</p>
-<p><strong>产生背景</strong></p>
-<p>正如第二版那样,Spring 3.0 也仅支持 iBatis2。那么,我们就想将 MyBatis3 的支持添加 到 Spring3.0(参考 Spring Jira 中的问<br>题)中。而不幸的是,Spring 3.0 的开发在 MyBatis 3.0 官方发布前就结束了。 因为 Spring 开发团队不想发布一个基于非发布版的<br>MyBatis 的整合支 持,那么 Spring 官方的支持就不得不继续等待了。要在 Spring 中支持 MyBatis,MyBatis 社 区认为现在应该是<br>自己团结贡献者和有兴趣的人一起来开始将 Spring 的整合作为 MyBatis 社 区的子项目的时候了。</p>
-<p>以上内容摘自MyBatis-Spring官网，MyBatis-Spring详细请参考官网：<a href="http://www.mybatis.org/spring/zh/index.html" target="_blank" rel="noopener">http://www.mybatis.org/spring/zh/index.html</a></p>
-<p>下面我们来集成MyBatis,首先引入相关的Jar包，修改pom.xml文件：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">mybatis.version</span>&gt;</span>3.2.8<span class="tag">&lt;/<span class="name">mybatis.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mybatis_spring.version</span>&gt;</span>1.2.2<span class="tag">&lt;/<span class="name">mybatis_spring.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">&lt;!-- mybatis --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- mybatis-spring --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis_spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>在MyBatis-Spring入门<br><a href="http://www.mybatis.org/spring/zh/getting-started.html" target="_blank" rel="noopener">http://www.mybatis.org/spring/zh/getting-started.html</a> 里面说到，要和Spring一起使用MyBatis，你需要在Spring应用上下文中定义至少两样东西：一个SqlSessionFactory和至少一个数据映射器类。</p>
-<p>在 MyBatis-Spring 中,SqlSessionFactoryBean 是用于创建 SqlSessionFactory 的。要 配置这个工厂 bean,放置下面的代码在 Spring 的 XML 配置文件中:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这里我们希望将Spring配置分成多个XML文件，尽管不是严格要求，但是将Spring配置文件组织到多个文件中是很好的主意，基于这样的理念,我们在/WEB-INF目录下面新创建一个名为spring-mybatis.xml的文件，将MyBatis与Spring集成的相关配置都放在spring-mybatis.xml这个文件中。另外还有以下两处可以改进的地方：</p>
-<ol>
-<li>原来的DispatcherServlet会自动装配的springmvc-servlet.xml文件名称觉得修改为springmvc.xml文件更合适。</li>
-<li>新建一个名为spring.xml的Spring配置文件，用于配置一些其他的配置。</li>
-</ol>
-<p>在前面的文章中我们提到，DispatcherServlet会根据一个XML文件来加载其Spring应用上下文，而这个文件的名字是基于servlet-name属性来确定的，在这里就是springmvc-servlet.xml文件，那我们新增的spring-mybatis.xml和spring.xml文件如何加载了？</p>
-<p>这就是ContextLoaderListener能够发挥作用的地方了。Context-LoaderListener是一个SErvlet监听器，除了DispatcherServlet创建的应用上下文之外，它能够加载其他的配置文件到一个Spring上下文中。为了使用ContextLoaderListener，需要在web.xml文件中添加如下的listener声明：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>我们必须告诉ContextLoaderListener需要加载那些配置文件。如果没有指定，上下文加载器会查找/WEB-INF/applicationContext.xml这个Spring配置文件。为了给ContextLoaderListener指定一个或多个Spring配置文件，需要在servlet上下文中配置contextConfigLocation参数：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/spring.xml,/WEB-INF/spring-mybatis.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>关于将springmvc-servlet.xml 改名为 spring-mvc.xml的问题，修改DispactherServlet相关配置，增加contextConfigLocation配置，如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>springmvc<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">description</span>&gt;</span>springmvc config<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>/WEB-INF/spring-mvc.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">load-on-startup</span>&gt;</span>1<span class="tag">&lt;/<span class="name">load-on-startup</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>下面我们来看看spring-mybatis.xml文件的配置：<br>首先配置SqlSessionFactory：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- SqlSessionFactory --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span> <span class="attr">value</span>=<span class="string">"classpath:mapper/*.xml"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>要注意 SqlSessionFactory需要一个DataSource(数据源)，这可以是任意的DataSource,配置它就和配置其它的Spring数据库连接一样。关于DataSource的配置我们下面再介绍，这里还有一个配置mapperLocations，mapperLocations属性使用一个资源位置的list。这个属性可以用来指定MyBatis的XML映射器文件的位置，<code>value=&quot;classpath:mapper/*.xml&quot;</code> 表示会从类路径下加载mapper包中的所有的MyBatis映射器XML文件。我们在src/main/resources 目录下新建一个名为mapper的目录。</p>
-<p>下面我们来增加DataSource，这里我们使用MySQL数据库作为示例，执行下面的sql语句创建一个DataBase和一个表t_user，并向这个表初始插入两条数据：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> mybatis;</span><br><span class="line"></span><br><span class="line"><span class="keyword">USE</span> mybatis;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> t_user</span><br><span class="line">(</span><br><span class="line">    user_id <span class="built_in">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="literal">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    user_name <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    user_age <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">    PRIMARY <span class="keyword">KEY</span> (user_id)</span><br><span class="line">)<span class="keyword">ENGINE</span>=<span class="keyword">InnoDB</span> <span class="keyword">DEFAULT</span> <span class="keyword">CHARSET</span>=utf8;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_user(user_id,user_name,user_age) <span class="keyword">VALUES</span>(<span class="number">1</span>,<span class="string">"Jason"</span>,<span class="string">"28"</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t_user(user_id,user_name,user_age) <span class="keyword">VALUES</span>(<span class="number">2</span>,<span class="string">"Toni"</span>,<span class="string">"24"</span>);</span><br></pre></td></tr></table></figure></p>
-<p>Spring中配置数据源可以使用Spring提供的数据源对象DriverManagerDataSource，DriverManagerDataSource在每个请求时都会返回一个新建的连接，从性能上面考虑我们一般会使用数据源连接池，常用的数据源连接池有：DBCP,c3p0,Druid，这里我们选择使用阿里巴巴的Druid。</p>
-<p>首先引入相应的jar包：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">mysql_connector_java.version</span>&gt;</span>5.1.38<span class="tag">&lt;/<span class="name">mysql_connector_java.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">druid.version</span>&gt;</span>1.0.13<span class="tag">&lt;/<span class="name">druid.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="comment">&lt;!-- spring jdbc --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;spring.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- mysql-connector-java --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mysql_connector_java.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- alibaba druid --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>druid<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;druid.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>接下来在spring-mybatis.xml文件里面增加DataSource的配置：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--数据库连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.alibaba.druid.pool.DruidDataSource"</span> <span class="attr">init-method</span>=<span class="string">"init"</span> <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"root"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"123456"</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置初始化大小、最小、最大 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialSize"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxActive"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>20<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置获取连接等待超时的时间 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWait"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置监控统计拦截的filters --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filters"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>stat<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"timeBetweenEvictionRunsMillis"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minEvictableIdleTimeMillis"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>300000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>对于大多数情况，可以将整个应用程序配置在一个Bean装配文件中。但有时候，你会发现将一个部分配置抽取到单独的属性文件中会大有益处，在上面的 dataSource这个Bean声明中，连接数据库所需要的所有配置都在这里。这意味着有两件事情：</p>
-<ul>
-<li>如果你需要修改数据库的URL或者用户名和密码的话，你需要编辑这个Spring配置文件，然后重新编译和部署应用程序；</li>
-<li>用户名和密码是敏感信息，你不希望它落到不合适的人手上。<br>像这种场景，最好不要直接在Spring应用上下文中配置这些信息。Spring自带了好几个选项，可以借助它们将Spring配置细节外部化到属性文件中，这样就能在部署的应用之外进行管理，这里我们使用<strong>属性占位符配置</strong></li>
-<li>属性占位符配置(Property placeholder configurer) 会将占位符内的变量替换为外部属性文件的值<br>在2.5版本之前的Spring中，属性占位符配置需要在Spring应用上下文中将PropertyPlaceholderConfigurer声明为bean，尽管并不特别复杂，但是Spring 2.5 借助 context 配置上下文中的 context:property-placeholder元素，将它变得更简单了，我们在<strong>spring.xml</strong>进行配置，如下所示：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line">       </span><br><span class="line">       <span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">"classpath:db.properties"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>占位符配置将从名为db.properties的文件中获取属性值，这个文件位于类路径的根目录下。在src/main/resources目录下新建一个名为db.properties的文件，内容如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jdbc.url=jdbc\:mysql\://192.168.8.103\:3306/mybatis?useUnicode\=true&amp;characterEncoding\=UTF-8</span><br><span class="line">jdbc.username=root</span><br><span class="line">jdbc.password=123456</span><br></pre></td></tr></table></figure></p>
-<p>现在，可以将spring-batis.xml配置中的硬编码值替换为基于db.properties属性的占位符变量：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--数据库连接池--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"com.alibaba.druid.pool.DruidDataSource"</span> <span class="attr">init-method</span>=<span class="string">"init"</span> <span class="attr">destroy-method</span>=<span class="string">"close"</span>&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.url&#125;"</span> /&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.username&#125;"</span>/&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"$&#123;jdbc.password&#125;"</span>/&gt;</span></span><br><span class="line">	  <span class="comment">&lt;!-- 配置初始化大小、最小、最大 --&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"initialSize"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxActive"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>20<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minIdle"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="comment">&lt;!-- 配置获取连接等待超时的时间 --&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"maxWait"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="comment">&lt;!-- 配置监控统计拦截的filters --&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"filters"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>stat<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="comment">&lt;!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 --&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"timeBetweenEvictionRunsMillis"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>60000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	  <span class="comment">&lt;!-- 配置一个连接在池中最小生存的时间，单位是毫秒 --&gt;</span></span><br><span class="line">	  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"minEvictableIdleTimeMillis"</span>&gt;</span><span class="tag">&lt;<span class="name">value</span>&gt;</span>300000<span class="tag">&lt;/<span class="name">value</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>DataSource创建好后，接下来看看如何利用MyBatis从t_user表中查询数据了，按照MVC思想来创建相应的Model,Service,Dao。</p>
-<ul>
-<li><p>Model: 新建一个com.springmvcdemo.model的package,在里面新建一个名为User.java的文件，如下所示：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springmvcdemo.model;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	<span class="keyword">private</span> String age;</span><br><span class="line">	<span class="keyword">private</span> String userName;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(String age)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getUserName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> userName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserName</span><span class="params">(String userName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">int</span> id, String age, String userName)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">super</span>();</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">		<span class="keyword">this</span>.age = age;</span><br><span class="line">		<span class="keyword">this</span>.userName = userName;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>Dao：新建一个com.springmvcdemo.mapper的package(MyBatis里面使用了Mapper这个概率，这里的包名用mapper)，在里面新建一个名为UserMapper的接口。(要注意,所指定的映射器类必须是一个接口,而不是具体的实现类。)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserMapper</span> </span>&#123;</span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">(@Param(<span class="string">"userId"</span>)</span> <span class="keyword">int</span> userId)</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>然后我们用映射器 XML 文件来指定SQL语句,在src/main/resources/mapper目录下面创建一个名为UserMapper.xml文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"com.springmvcdemo.mapper.UserMapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">"userMap"</span> <span class="attr">type</span>=<span class="string">"com.springmvcdemo.model.User"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"id"</span> <span class="attr">column</span>=<span class="string">"id"</span> <span class="attr">jdbcType</span>=<span class="string">"INTEGER"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"userName"</span> <span class="attr">column</span>=<span class="string">"user_name"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">result</span> <span class="attr">property</span>=<span class="string">"age"</span> <span class="attr">column</span>=<span class="string">"user_age"</span> <span class="attr">jdbcType</span>=<span class="string">"VARCHAR"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"findById"</span> <span class="attr">resultMap</span>=<span class="string">"userMap"</span>&gt;</span></span><br><span class="line">       SELECT user_id id,user_name userName,user_age age FROM t_user WHERE user_id = #&#123;userId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后我们需要在Spring的XML配置文件中注册映射器，可以使用MapperScannerConfigurer,它将会查找类路径下的映射器并自动将它们创建为MapperFactoryBean,在spring-mybatis.xml文件中增加如下代码：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- MapperScannerConfigurer --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.mapper.MapperScannerConfigurer"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"basePackage"</span> <span class="attr">value</span>=<span class="string">"com.springmvcdemo.mapper"</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactoryBeanName"</span> <span class="attr">value</span>=<span class="string">"sqlSessionFactory"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<ul>
-<li>Service: 新建一个com.springmvcdemo.service的package，在里面新建一个名为UserService的类：<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.springmvcdemo.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.springmvcdemo.mapper.UserMapper;</span><br><span class="line"><span class="keyword">import</span> com.springmvcdemo.model.User;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserMapper userMapper;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> User <span class="title">findById</span><span class="params">(<span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userMapper.findById(userId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>这里使用了@Autowired注解来自动装配userMapper Bean, 我们在spring-mvc.xml配置文件里面使用了<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Spring Auto scanning components --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.springmvcdemo"</span> /&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>context:component-scan 元素来让Spring自动检测和定义Bean,那么context:component-scan 又是如何知道哪些类需要注册为Spring Bean呢？默认情况下context:component-scan 查找使用构造型(stereotype)注解所标注的类，这些特殊的注解如下所示：</p>
-<pre><code>@Component -- 通用的构造型注解，标识该类为Spring组件。
-
-@Controller -- 标识将该类定义为Spring MVC controller。
-
-@Repository -- 标识将该类定义为数据仓库(一般用于Dao类上)
-
-@Service -- 标识将该类定义为服务
-
-使用@Component标注的任意自定义注解
-</code></pre><p>Model, Dao, Service 完成后，我们在Controller里面调用Service来从数据库中获取数据，修改后的HomeController代码如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HomeController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(&#123;<span class="string">"/"</span>,<span class="string">"/home"</span>&#125;)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">homePage</span><span class="params">(@RequestParam(required = <span class="keyword">false</span>, defaultValue = <span class="string">"1"</span>)</span> <span class="keyword">int</span> userId, Model model) </span>&#123;</span><br><span class="line">        User user = userService.findById(userId);</span><br><span class="line">        model.addAttribute(<span class="string">"user"</span>,user);</span><br><span class="line">        model.addAttribute(<span class="string">"message"</span>,<span class="string">"Hello!"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"home"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>@RequestParam(required = false, defaultValue = “1”) int userId 定义了传入的参数userId,并且设置默认值为1，User user = userService.findById(userId);调用service获取数据。</p>
-<p>修改下home.ftl,利用${user.userName}输出userName值：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    this is the home page(ftl). $&#123;message&#125; $&#123;user.userName&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>启动Tomcat服务，启动成功后自动弹出首页，如下图所示：</p>
-<p><img src="/assets/blogImg/springmvc/frame_4_home_page.png" alt="image"></p>
-<p>我们可以看出userName已经获取出来了，这里没有传递userId参数，userId将使用默认设定的值1。</p>
-<p>为了在控制台查看执行的SQL，我们这里使用Log4j来输出MyBatis执行的SQL语句。</p>
-<p>关于MyBatis使用日志请参考官方文档：<a href="http://www.mybatis.org/mybatis-3/zh/logging.html。" target="_blank" rel="noopener">http://www.mybatis.org/mybatis-3/zh/logging.html。</a></p>
-<p>首先引入所需的jar：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">slf4j.version</span>&gt;</span>1.7.12<span class="tag">&lt;/<span class="name">slf4j.version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    ...</span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;slf4j.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>添加SLF4J依赖，用于提供日志API，使用Log4J作为实现。下面就是创建log4j.properties文件了，在src/main/resources目录下面创建一个名为log4j.properties文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">log4j.rootLogger=INFO,Console,File</span><br><span class="line">#定义日志输出目的地为控制台</span><br><span class="line">log4j.appender.Console=org.apache.log4j.ConsoleAppender</span><br><span class="line">log4j.appender.Console.Target=System.out</span><br><span class="line">#可以灵活地指定日志输出格式，下面一行是指定具体的格式</span><br><span class="line">log4j.appender.Console.layout = org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.Console.layout.ConversionPattern=[%c] - %m%n</span><br><span class="line"></span><br><span class="line"># Mybatis Logging</span><br><span class="line">log4j.logger.com.springmvcdemo.mapper=TRACE</span><br><span class="line"></span><br><span class="line">#文件大小到达指定尺寸的时候产生一个新的文件</span><br><span class="line">log4j.appender.File = org.apache.log4j.RollingFileAppender</span><br><span class="line">#指定输出目录</span><br><span class="line">log4j.appender.File.File = logs/ssm.log</span><br><span class="line">#定义文件最大大小</span><br><span class="line">log4j.appender.File.MaxFileSize = 10MB</span><br><span class="line"># 输出所有日志，如果换成DEBUG表示输出DEBUG以上级别日志</span><br><span class="line">log4j.appender.File.Threshold = ALL</span><br><span class="line">log4j.appender.File.layout = org.apache.log4j.PatternLayout</span><br><span class="line">log4j.appender.File.layout.ConversionPattern =[%p] [%d&#123;yyyy-MM-dd HH\:mm\:ss&#125;][%c]%m%n</span><br></pre></td></tr></table></figure></p>
-<p>请注意 log4j.logger.com.springmvcdemo.mapper=TRACE 添加这段配置后，告诉Log4J把 com.springmvcdemo.mapper 所在包下面的mapper接口的详细执行日志记录下来。</p>
-<p>Log4J 添加完成后，重启Tomcat服务器，重新访问首页：</p>
-<p>从控制台中我们可以看出已经输出执行的SQL语句了。</p>
-<p>传入userId参数，如下所示：</p>
-<p><img src="/assets/blogImg/springmvc/frame_4_home_page2.png" alt="image"></p>
-<p>可以发现页面上输出的userName从Jason变成了Toni，控制台也输出了执行的SQL语句：</p>
-<p><img src="/assets/blogImg/springmvc/frame_4_home_page_output_sql2.png" alt="image"></p>
-<p>至此，SpringMVC集成MyBatis基本完成，接下来会继续完善框架，增加事务处理功能。</p>
-<p>(代码已提交到GitHub：<a href="https://github.com/jasonli822/MySpringMvcFrame" target="_blank" rel="noopener">https://github.com/jasonli822/MySpringMvcFrame</a>)</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/06/23/springmvc-framework-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jason Li">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/assets/totoro.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jasonli822的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2016/06/23/springmvc-framework-3/" itemprop="url">使用IntelliJ IDEA开发SpringMVC网站（三）视图使用Freemarker</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-06-23T10:11:14+08:00">
-                2016-06-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java/" itemprop="url" rel="index">
-                    <span itemprop="name">Java</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在上一篇<a href="/2016/06/21/springmvc-framework-2/">《使用IntelliJ IDEA开发SpringMVC网站（二）框架配置》</a>文章中我们使用Spring MVC搭建了一个简单的框架，本文我们来看看如何在Spring MVC上加上对Freemarker的集成。</p>
-<p>因为JSP页面允许在JSP中书写Java代码，这是不提倡的(破坏了MVC结构)，我们曾经的一个项目中JSP页面中书写的大量的Java代码，导致了代码可读性不好，调试困难，而Freemarker强制了后台代码与页面代码的分离，所以我们后面再做项目时选择了FreeMarker替代JSP。使用了一段时间后觉得Freemarker真的很不错，宏的定义，强大的标签语言让我们爱不释手。（在Java语言中常用的模板引擎除了Freeamrker还有Velocity）</p>
-<p><strong>Freemarker 与 JSP</strong></p>
-<p>Freemarker与JSP的渲染机制不一样，JSP最终会编译成Java类，JSP文件实际上执行的是JSP对应的Java类，简单地说就是将JSP的HTML转换成out.write输出，而JSP中的Java代码直接复制到翻译后的Java类中。最终执行的是翻译后的Java类，而Freemarker是由Freemarker引擎解释执行的，它们有如下区别：</p>
-<ul>
-<li>执行方式不一样：JSP是编译执行，而FreeMarker是解释执行。如果JSP文件被修改了，那么对应的Java类也会被重新编译，而Freemarker却不需要。</li>
-<li>执行效率不同：从两者的执行方式不同可以看出，它们的执行效率不一样，从理论上来说，编译执行的效率明显好于解释执行，一个很明显的例子是在JSP中方法调用是直接执行的，而Freemarker的方法调用是反射执行的，JSP的效率会明显好于Freemarker。当然如果在JSP中有语法JSTL，语法标签的执行要看该标签的实现复杂度。</li>
-<li>需要的环境支持不一样：JSP执行必须要有Servlet的运行环境，也就是需要ServletContext、HttpServletRequest、HttpServletResponse类，而要渲染Freemarker不需要其他环境类的支持，所以Freemarker不只应用在Servlet环境。</li>
-</ul>
-<p>下面我们就来看看如何在Spring MVC中使用Freemarker作为其视图实现。</p>
-<p>首先，我们需要导入需要的Jar包:FreeMarker和Spring context support，修改pom.xml文件：</p>
-<p><img src="/assets/blogImg/springmvc/add_freemarker_dependent.png" alt="image"></p>
-<p>Jar包添加好之后，然后在mvc-dispatcher-servlet.xml文件里面增加FreeMarker的配置，如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- Freemarker configuration --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"freemarkerConfigurer"</span></span></span><br><span class="line"><span class="tag"> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"templateLoaderPath"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"freemarkerSettings"</span>&gt;</span></span><br><span class="line">		 <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"locale"</span>&gt;</span>zh_CN<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"datetime_format"</span>&gt;</span>yyyy-MM-dd HH:mm:ss<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"date_format"</span>&gt;</span>yyyy-MM-dd<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"number_format"</span>&gt;</span>#.##<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"classic_compatible"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">		 <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后修改View Resolver配置为FreemarkerViewResolver<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- View Resolver --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"freeMarkerViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span> <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerView "</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"contentType"</span> <span class="attr">value</span>=<span class="string">"text/html;charset=UTF-8"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cache"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".ftl"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeRequestAttributes"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeSessionAttributes"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeSpringMacroHelpers"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"allowSessionOverride"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"requestContextAttribute"</span> <span class="attr">value</span>=<span class="string">"requestContext"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p><font color="red">注意1：</font>在freemarkerConfigurer配置了templateLoaderPath，在freeMarkerViewResolver中不需要再配置prefix,否则启动的时候会报错。如下所示：<br><img src="/assets/blogImg/springmvc/freemarker_error.png" alt="image"></p>
-<p><font color="red">注意2：</font>增加了FreeMarker相关配置后，感觉mvc-dispatcher-servlet.xml这个名字不是很合适了，这里把web.xml里面配置的DispatcherServlet的servlet-name名字修改为springmvc,如下所示：<br><img src="/assets/blogImg/springmvc/web_xml_modify.png" alt="image"></p>
-<p>然后在/WEB-INF/目录下新建一个Spring Config文件springmvc-servlet.xml, 将mvc-dispatcher-servlet.xml 内容拷贝到springmvc-servlet.xml文件后，删除原来的 mvc-dispatcher-servlet.xml文件。</p>
-<p>完成后的springmvc-servlet.xml文件如下所示：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Processing requests for static resources --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:resources</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Using Spring MVC provides annotation-driven feature --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Spring Auto scanning components --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.springmvcdemo"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- Freemarker configuration --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"freemarkerConfigurer"</span></span></span><br><span class="line"><span class="tag">             <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"templateLoaderPath"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"defaultEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"freemarkerSettings"</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;<span class="name">props</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"locale"</span>&gt;</span>zh_CN<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"datetime_format"</span>&gt;</span>yyyy-MM-dd HH:mm:ss<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"date_format"</span>&gt;</span>yyyy-MM-dd<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"number_format"</span>&gt;</span>#.##<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"classic_compatible"</span>&gt;</span>true<span class="tag">&lt;/<span class="name">prop</span>&gt;</span></span><br><span class="line">                     <span class="tag">&lt;/<span class="name">props</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line">       <span class="comment">&lt;!-- View Resolver --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"freeMarkerViewResolver"</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"viewClass"</span> <span class="attr">value</span>=<span class="string">"org.springframework.web.servlet.view.freemarker.FreeMarkerView "</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"contentType"</span> <span class="attr">value</span>=<span class="string">"text/html;charset=UTF-8"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"cache"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".ftl"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeRequestAttributes"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeSessionAttributes"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"exposeSpringMacroHelpers"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"allowSessionOverride"</span> <span class="attr">value</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"requestContextAttribute"</span> <span class="attr">value</span>=<span class="string">"requestContext"</span>/&gt;</span></span><br><span class="line">       <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>配置完成后，我们来进行测试，在 /WEB-INF/views 目录下删除原来的home.jsp页面，新建一个home.ftl页面，home.ftl页面内容如下：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span> <span class="comment">&lt;!-- 使用 HTML5 doctype，不区分大小写 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"zh-cmn-Hans"</span>&gt;</span> <span class="comment">&lt;!-- 更加标准的 lang 属性写法 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 声明文档使用的字符编码 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">'utf-8'</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 优先使用 IE 最新版本和 Chrome --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge,chrome=1"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">this is the home page(ftl). $&#123;message&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>启动Tomcat服务，服务自动成功后，自动弹出系统首页，如下所示：</p>
-<p><img src="/assets/blogImg/springmvc/web_home_page_freemarker.png" alt="image"></p>
-<p>至此，使用FreeMarker作为Spring MVC视图实现完成。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2123,7 +2045,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2134,7 +2056,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2145,7 +2067,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

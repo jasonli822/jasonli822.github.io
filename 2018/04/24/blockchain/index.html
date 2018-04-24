@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="区块链," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是区块链区块链本质上是一个去中心化的分布式账本数据库，是比特币的底层技术。 位于全球计算机节点，部分会作为区块链的“小账本” 所有的小账本按照一定的规则连在一起，形成区块链 每个账本发生的业务不同，但按照相同的规则同步合并信息，这样的体系就是区块链系统。 区块链的优势A转钱给B -&amp;gt; 先记在一个小账本上 -&amp;gt; 通知所有的小账本信息更新 -&amp;gt; 各个账本都确认信息受信 -&amp;gt;">
+<meta name="keywords" content="区块链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链技术简介">
+<meta property="og:url" content="http://yoursite.com/2018/04/24/blockchain/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="什么是区块链区块链本质上是一个去中心化的分布式账本数据库，是比特币的底层技术。 位于全球计算机节点，部分会作为区块链的“小账本” 所有的小账本按照一定的规则连在一起，形成区块链 每个账本发生的业务不同，但按照相同的规则同步合并信息，这样的体系就是区块链系统。 区块链的优势A转钱给B -&amp;gt; 先记在一个小账本上 -&amp;gt; 通知所有的小账本信息更新 -&amp;gt; 各个账本都确认信息受信 -&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/blockchain/Centralized-payment-methods.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/blockchain/Decentralized-payment-methods.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/blockchain/Anonymity.png">
+<meta property="og:updated_time" content="2018-04-24T03:16:36.105Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链技术简介">
+<meta name="twitter:description" content="什么是区块链区块链本质上是一个去中心化的分布式账本数据库，是比特币的底层技术。 位于全球计算机节点，部分会作为区块链的“小账本” 所有的小账本按照一定的规则连在一起，形成区块链 每个账本发生的业务不同，但按照相同的规则同步合并信息，这样的体系就是区块链系统。 区块链的优势A转钱给B -&amp;gt; 先记在一个小账本上 -&amp;gt; 通知所有的小账本信息更新 -&amp;gt; 各个账本都确认信息受信 -&amp;gt;">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/blockchain/Centralized-payment-methods.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/24/blockchain/"/>
+
+
+
+
+
+  <title>区块链技术简介 | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/24/blockchain/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">区块链技术简介</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T10:11:48+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/24/blockchain/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/24/blockchain/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="什么是区块链"><a href="#什么是区块链" class="headerlink" title="什么是区块链"></a>什么是区块链</h2><p><span style="color:red;">区块链本质上是一个去中心化的分布式账本数据库，是比特币的底层技术。</span></p>
+<p>位于全球计算机节点，部分会作为区块链的“小账本”</p>
+<p>所有的小账本按照一定的规则连在一起，形成区块链</p>
+<p>每个账本发生的业务不同，但按照相同的规则同步合并信息，这样的体系就是区块链系统。</p>
+<h2 id="区块链的优势"><a href="#区块链的优势" class="headerlink" title="区块链的优势"></a>区块链的优势</h2><p>A转钱给B -&gt; 先记在一个小账本上 -&gt; 通知所有的小账本信息更新 -&gt; 各个账本都确认信息受信 -&gt; 各个小账本信息同步 -&gt; 交易完成</p>
+<h3 id="分布式去中心化"><a href="#分布式去中心化" class="headerlink" title="分布式去中心化"></a>分布式去中心化</h3><p><img src="/assets/blogImg/blockchain/Centralized-payment-methods.png" alt="image"></p>
+<p><img src="/assets/blogImg/blockchain/Decentralized-payment-methods.png" alt="image"></p>
+<h3 id="匿名性"><a href="#匿名性" class="headerlink" title="匿名性"></a>匿名性</h3><p><img src="/assets/blogImg/blockchain/Anonymity.png" alt="image"></p>
+<h2 id="区块链难以克服的缺点"><a href="#区块链难以克服的缺点" class="headerlink" title="区块链难以克服的缺点"></a>区块链难以克服的缺点</h2><p>效率问题</p>
+<p>人才成本高 - 密码学，计算数学，人工智能</p>
+<h2 id="举例理解"><a href="#举例理解" class="headerlink" title="举例理解"></a>举例理解</h2><p><a href="https://mp.weixin.qq.com/s/PUWLS-J5UmYV1pUsV3ZUpA" target="_blank" rel="noopener">中本聪算啥？六百多年前区块链项目就在中国落地了！| 财链社</a> 文章对理解什么式区块链讲解的很形象，摘抄如下:</p>
+<p>周末到了，张三准备约上几个好友出来打麻将，于是就打电话约了李四、王五、赵六组了个麻将局。<br>而张三想打麻将的想法就相当于创建一个区块，而他再以打电话点对点的形式通知了李四、王五、赵六这个动作就做到了<b>“去中心化”的点对点传输。</b>  </p>
+<p>于是张三、李四、王五、赵六就形成了共识，坐到了一起开始打麻将。四个人会分别摸13张随机分配的麻将，通过摸一张打一张的形式来将麻将规范化的排序来和牌。<b>而这里面摸打的动作就可以理解为“挖矿”，四个人就是“矿工”，108张麻将就是哈希值。而胡牌就是碰撞出了正确的哈希值，就可以获得相应的筹码奖励，也就是所谓的比特币。</b></p>
+<p>那么问题来了，为什么其他三个人都会主动给和牌的人奖励呢？那是因为这三个人都自动达成了共识，这人确实赢了，大家都记录了这笔账，想抵赖是不行的，不然以后传出去这人品不行，就没人再和他一起打麻将了，毕竟圈子很重要。</p>
+<p>同时，在大家达成共识时，我们看不到任何中介或者第三方出来评判谁赢了，大家给赢得人的奖励也不需要通过第三方转交给他，都是直接点对点交易，<b>这一过程就是去中心化。</b></p>
+<p>四个人（矿工）各自记录了第一局的战绩，王五大胡自摸七小对，赵六杠了张三的幺鸡，记录完成后就生成了一个完整的区块，但要记住，这才只是第一局，在整个区块链上，这才仅仅是一个节点，如果那天一共打了20盘麻将，<b>也就是20个节点（区块），20个区块连接在一起就形成了一个完整账本，这就是区块链。</b></p>
+<p>因为这个账本每人都有一个，所以就是<b>分布式账本</b>，目的就是为了防止有人篡改记录，打到最后，谁输谁赢一目了然。</p>
+<p>整个过程，将区块链技术体现得淋漓尽致。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="https://mp.weixin.qq.com/s/PUWLS-J5UmYV1pUsV3ZUpA" target="_blank" rel="noopener">中本聪算啥？六百多年前区块链项目就在中国落地了！| 财链社</a><br><a href="https://sale.jd.com/act/dqtmRyTIuQkFHG4.html?cu=true&amp;utm_source=segmentfault.com&amp;utm_medium=tuiguang&amp;utm_campaign=t_1000470991_&amp;utm_term=7e5d183b70ed4a98ad0721a8374ffa9f&amp;abt=3" target="_blank" rel="noopener">区块链-京东图书专题活动</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链/" rel="tag"># 区块链</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/23/microservices-and-springcloud-introduction/" rel="next" title="微服务与Spring Cloud简介">
+                <i class="fa fa-chevron-left"></i> 微服务与Spring Cloud简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是区块链"><span class="nav-number">1.</span> <span class="nav-text">什么是区块链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链的优势"><span class="nav-number">2.</span> <span class="nav-text">区块链的优势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式去中心化"><span class="nav-number">2.1.</span> <span class="nav-text">分布式去中心化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匿名性"><span class="nav-number">2.2.</span> <span class="nav-text">匿名性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块链难以克服的缺点"><span class="nav-number">3.</span> <span class="nav-text">区块链难以克服的缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举例理解"><span class="nav-number">4.</span> <span class="nav-text">举例理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文档"><span class="nav-number">5.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jasonli822',
+            repo: 'jasonli822.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'b27313b09077a9ab3d80b82065664e5606fe5c9b',
+            
+                client_id: '064164f2ae3bfdf7ff89'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
