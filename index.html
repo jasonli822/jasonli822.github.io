@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/26/creating-microservices-with-spring-boot-part-1-getting-started/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/27/spring-cloud-microservice-example/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jason Li">
@@ -261,7 +261,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/26/creating-microservices-with-spring-boot-part-1-getting-started/" itemprop="url">creating-microservices-with-spring-boot-part-1-getting-started</a></h1>
+                <a class="post-title-link" href="/2018/04/27/spring-cloud-microservice-example/" itemprop="url">SpringCloud微服务示例</a></h1>
         
 
         <div class="post-meta">
@@ -273,8 +273,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T08:09:12+08:00">
-                2018-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-27T15:07:00+08:00">
+                2018-04-27
               </time>
             
 
@@ -335,7 +335,7 @@
       
         
           
-            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本指南将帮助您学习微服务和微服务架构的基础知识。 我们也将开始着眼于使用Spring Boot的微服务的基本实现。</p>
+            <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本指南将帮助您学习微服务和微服务架构的基础知识。 我们也将开始着眼于使用Spring Cloud的微服务的基本实现。</p>
 <blockquote>
 <p>我们将创建一些服务，并使用Eureka实现服务治理和Ribbon来实现客户端负载均衡。</p>
 </blockquote>
@@ -374,14 +374,22 @@
 <p>组件的所有实例(CCS和FS)都向Eureka命名服务器注册。当CSS需要调用FS时，它会向Eureka命名服务器询问活动实例。我们将使用Ribbon在FS不同实例之间进行客户端负载均衡。</p>
 <p>下图显示了从CCS到FS请求时的序列图：</p>
 <p><img src="/assets/blogImg/springcloud/Spring-Boot-Microservice-7-Eureka-Sequence-Diagram.png" alt="image"></p>
-<p>下面是本系列文章接下来的内容：</p>
+<p>本Demo项目包括以下内容：</p>
 <ul>
 <li>创建一个外汇服务(FS) - 我们将基于Spring Boot Starter Web 和 Spring Boot Started JPA 创建一个简单的rest service。我们将使用JPA并连接到H2数据库。</li>
 <li>创建货币转换服务(CCS) - 我们将使用Feign创建一个简单的rest service来调用外汇服务(FS)</li>
 <li>使用Ribbon实现负载均衡</li>
 <li>使用Eureka实现服务注册和发现</li>
 </ul>
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a href="http://www.springboottutorial.com/creating-microservices-with-spring-boot-part-1-getting-started" target="_blank" rel="noopener">http://www.springboottutorial.com/creating-microservices-with-spring-boot-part-1-getting-started</a></p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>依次启动 Eureka 服务(spring-cloud-microservice-eureka)、两个外汇服务(springcloud-microservice-forex-servcie，端口分别是：8000,8001)以及货币转换服务：</p>
+<p><img src="/assets/blogImg/springcloud/spring-cloud-microservice-example-eureka.png" alt="image"></p>
+<p>从上图可以看到看到一个货币转换服务(CCS)实例和两个外汇服务(FS)微服务实例在Eureka命名服务器上注册。CCS的请求将通过Eureka由Ribbon分发给外汇服务(FS)的两个实例。</p>
+<p>请求1：<br>Get to <a href="http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/10000" target="_blank" rel="noopener">http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/10000</a></p>
+<p><img src="/assets/blogImg/springcloud/spring-cloud-microservice-example-request-1.png" alt="image"></p>
+<p>请求2：<br>Get to <a href="http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/10000" target="_blank" rel="noopener">http://localhost:8100/currency-converter-feign/from/EUR/to/INR/quantity/10000</a></p>
+<p><img src="/assets/blogImg/springcloud/spring-cloud-microservice-example-request-2.png" alt="image"></p>
+<p>我们可以看到两个响应中的端口号是不同的。</p>
+<p>代码已上传 <a href="https://github.com/jasonli822/springcloud-microservice-example" target="_blank" rel="noopener">GitHub</a></p>
 
           
         
