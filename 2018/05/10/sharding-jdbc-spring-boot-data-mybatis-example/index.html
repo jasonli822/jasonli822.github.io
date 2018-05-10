@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Sharding-JDBC,分库分表," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Sharding-JDBC 简介官网介绍：Sharding-JDBC是一个开源的分布式数据库中间件，它无需额外部署和依赖，完全兼容JDBC和各种ORM框架。Sharding-JDBC作为面向开发的微服务云原生基础类库，完整实现了分库分表、读写分离和分布式主键功能，并初步实现了柔性事务。本文参考官方Demo采用Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表">
+<meta name="keywords" content="Sharding-JDBC,分库分表">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表学习Demo">
+<meta property="og:url" content="http://yoursite.com/2018/05/10/sharding-jdbc-spring-boot-data-mybatis-example/index.html">
+<meta property="og:site_name" content="jasonli822的博客">
+<meta property="og:description" content="Sharding-JDBC 简介官网介绍：Sharding-JDBC是一个开源的分布式数据库中间件，它无需额外部署和依赖，完全兼容JDBC和各种ORM框架。Sharding-JDBC作为面向开发的微服务云原生基础类库，完整实现了分库分表、读写分离和分布式主键功能，并初步实现了柔性事务。本文参考官方Demo采用Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/postman_test.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/demo_ds_0-t_order_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/demo_ds_0-t_order_item_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/demo_ds_1-t_order_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/demo_ds_1-t_order_item_0.png">
+<meta property="og:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/faq_9.png">
+<meta property="og:updated_time" content="2018-05-10T15:09:52.292Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表学习Demo">
+<meta name="twitter:description" content="Sharding-JDBC 简介官网介绍：Sharding-JDBC是一个开源的分布式数据库中间件，它无需额外部署和依赖，完全兼容JDBC和各种ORM框架。Sharding-JDBC作为面向开发的微服务云原生基础类库，完整实现了分库分表、读写分离和分布式主键功能，并初步实现了柔性事务。本文参考官方Demo采用Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表">
+<meta name="twitter:image" content="http://yoursite.com/assets/blogImg/sharding-jdbc/postman_test.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/05/10/sharding-jdbc-spring-boot-data-mybatis-example/"/>
+
+
+
+
+
+  <title>Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表学习Demo | jasonli822的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jasonli822的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Java、Android Notes</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/10/sharding-jdbc-spring-boot-data-mybatis-example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason Li">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/totoro.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jasonli822的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表学习Demo</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T23:08:18+08:00">
+                2018-05-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/10/sharding-jdbc-spring-boot-data-mybatis-example/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/10/sharding-jdbc-spring-boot-data-mybatis-example/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Sharding-JDBC-简介"><a href="#Sharding-JDBC-简介" class="headerlink" title="Sharding-JDBC 简介"></a>Sharding-JDBC 简介</h2><p>官网介绍：Sharding-JDBC是一个开源的分布式数据库中间件，它无需额外部署和依赖，完全兼容JDBC和各种ORM框架。Sharding-JDBC作为面向开发的微服务云原生基础类库，完整实现了分库分表、读写分离和分布式主键功能，并初步实现了柔性事务。<br>本文参考官方Demo采用Spring Boot+MyBatis+MySql+Sharding-JDBC实现分库分表示例。</p>
+<h2 id="建库、建表sql"><a href="#建库、建表sql" class="headerlink" title="建库、建表sql"></a>建库、建表sql</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">-- 两个库 demo_ds_0、demo_ds_1, 包含两个表：t_order_0、t_order_1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 建库SQL如下：</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SCHEMA</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> demo_ds_0;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">SCHEMA</span> <span class="keyword">IF</span> <span class="keyword">EXISTS</span> demo_ds_1;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> demo_ds_0;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SCHEMA</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> demo_ds_1;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 建表SQL如下：</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> t_order_0 (order_id <span class="built_in">BIGINT</span> AUTO_INCREMENT, user_id <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, <span class="keyword">status</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>), PRIMARY <span class="keyword">KEY</span> (order_id));  </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> t_order_item_0 (order_item_id <span class="built_in">BIGINT</span> AUTO_INCREMENT, order_id <span class="built_in">BIGINT</span>, user_id <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, <span class="keyword">status</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>), PRIMARY <span class="keyword">KEY</span> (order_item_id));    </span><br><span class="line">  </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> t_order_1 (order_id <span class="built_in">BIGINT</span> AUTO_INCREMENT, user_id <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, <span class="keyword">status</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>), PRIMARY <span class="keyword">KEY</span> (order_id));  </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> t_order_item_1 (order_item_id <span class="built_in">BIGINT</span> AUTO_INCREMENT, order_id <span class="built_in">BIGINT</span>, user_id <span class="built_in">INT</span> <span class="keyword">NOT</span> <span class="literal">NULL</span>, <span class="keyword">status</span> <span class="built_in">VARCHAR</span>(<span class="number">50</span>), PRIMARY <span class="keyword">KEY</span> (order_item_id));</span><br></pre></td></tr></table></figure>
+<h2 id="pom文件"><a href="#pom文件" class="headerlink" title="pom文件"></a>pom文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.shardingjdbc.example.spring.boot.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-demo<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>sharding-jdbc-demo<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">description</span>&gt;</span>Demo project for Spring Boot<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">parent</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.13.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">relativePath</span>/&gt;</span> <span class="comment">&lt;!-- lookup parent from repository --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">parent</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">project.reporting.outputEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.reporting.outputEncoding</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">java.version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java.version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.5.7.RELEASE<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>io.shardingjdbc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sharding-jdbc-core-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>commons-dbcp<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-dbcp<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>5.1.30<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>分库分表最主要有几个配置：<br>1.有多少个数据源<br>2.每张表的逻辑表名和所有物理表名<br>3.用什么列进行分库以及分库算法<br>4.用什么列进行分表以及分表算法<br>分为两个库：demo_ds_0、demo_ds_1<br>每个库都包含四个表：to_order_0, t_order_1, t_order_item_0, t_order_item_1<br>使用user_id作为分库列；<br>使用order_id作为分表列；</p>
+<h2 id="配置文件-application-properties"><a href="#配置文件-application-properties" class="headerlink" title="配置文件 application.properties"></a>配置文件 application.properties</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">sharding.jdbc.datasource.names=ds_0,ds_1</span><br><span class="line"></span><br><span class="line">sharding.jdbc.datasource.ds_0.type=org.apache.commons.dbcp.BasicDataSource</span><br><span class="line">sharding.jdbc.datasource.ds_0.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">sharding.jdbc.datasource.ds_0.url=jdbc:mysql://localhost:3306/demo_ds_0</span><br><span class="line">sharding.jdbc.datasource.ds_0.username=root</span><br><span class="line">sharding.jdbc.datasource.ds_0.password=123456</span><br><span class="line"></span><br><span class="line">sharding.jdbc.datasource.ds_1.type=org.apache.commons.dbcp.BasicDataSource</span><br><span class="line">sharding.jdbc.datasource.ds_1.driver-class-name=com.mysql.jdbc.Driver</span><br><span class="line">sharding.jdbc.datasource.ds_1.url=jdbc:mysql://localhost:3306/demo_ds_1</span><br><span class="line">sharding.jdbc.datasource.ds_1.username=root</span><br><span class="line">sharding.jdbc.datasource.ds_1.password=123456</span><br><span class="line"></span><br><span class="line">sharding.jdbc.config.sharding.default-database-strategy.inline.sharding-column=user_id</span><br><span class="line">sharding.jdbc.config.sharding.default-database-strategy.inline.algorithm-expression=ds_$&#123;user_id % 2&#125;</span><br><span class="line"></span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order.actual-data-nodes=ds_$&#123;0..1&#125;.t_order_$&#123;0..1&#125;</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order.table-strategy.inline.sharding-column=order_id</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order.table-strategy.inline.algorithm-expression=t_order_$&#123;order_id % 2&#125;</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order.key-generator-column-name=order_id</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order_item.actual-data-nodes=ds_$&#123;0..1&#125;.t_order_item_$&#123;0..1&#125;</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order_item.table-strategy.inline.sharding-column=order_id</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order_item.table-strategy.inline.algorithm-expression=t_order_item_$&#123;order_id % 2&#125;</span><br><span class="line">sharding.jdbc.config.sharding.tables.t_order_item.key-generator-column-name=order_item_id</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mybatis.config-location=classpath:META-INF/mybatis-config.xml</span><br><span class="line"></span><br><span class="line">logging.level.org.springframework=WARN</span><br><span class="line">logging.level.com.spring.ibatis.UserMapper=DEBUG</span><br><span class="line">logging.file=logs/spring-boot-logging.log</span><br></pre></td></tr></table></figure>
+<p>上面配置的分库分表规则如下：<br>demo_ds_0<br>  ├── t_order_0               user_id为偶数   order_id为偶数<br>  ├── t_order_1               user_id为偶数   order_id为奇数<br>  ├── t_order_item_0          user_id为偶数   order_id为偶数<br>  └── t_order_item_1          user_id为偶数   order_id为奇数<br>demo_ds_1<br>  ├── t_order_0               user_id为奇数   order_id为偶数<br>  ├── t_order_1               user_id为奇数   order_id为奇数<br>  ├── t_order_item_0          user_id为奇数   order_id为偶数<br>  └── t_order_item_1          user_id为奇数   order_id为奇数</p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShardingJdbcDemoApplication</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(ShardingJdbcDemoApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Entity实体类定义"><a href="#Entity实体类定义" class="headerlink" title="Entity实体类定义"></a>Entity实体类定义</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.shardingjdbc.example.spring.boot.mybatis.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">Order</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> orderId;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> userId;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String status;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getOrderId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> orderId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOrderId</span><span class="params">(<span class="keyword">final</span> <span class="keyword">long</span> orderId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.orderId = orderId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> status;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStatus</span><span class="params">(<span class="keyword">final</span> String status)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.status = status;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> String.format(<span class="string">"order_id: %s, user_id: %s, status: %s"</span>, orderId, userId, status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.shardingjdbc.example.spring.boot.mybatis.entity;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">OrderItem</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> orderItemId;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> orderId;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> userId;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> String status;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getOrderItemId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> orderItemId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOrderItemId</span><span class="params">(<span class="keyword">final</span> <span class="keyword">long</span> orderItemId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.orderItemId = orderItemId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getOrderId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> orderId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setOrderId</span><span class="params">(<span class="keyword">final</span> <span class="keyword">long</span> orderId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.orderId = orderId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getUserId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> userId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setUserId</span><span class="params">(<span class="keyword">final</span> <span class="keyword">int</span> userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.userId = userId;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getStatus</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> status;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStatus</span><span class="params">(<span class="keyword">final</span> String status)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.status = status;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> String.format(<span class="string">"item_id:%s, order_id: %s, user_id: %s, status: %s"</span>, orderItemId, orderId, userId, status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Mapper层"><a href="#Mapper层" class="headerlink" title="Mapper层"></a>Mapper层</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.shardingjdbc.example.spring.boot.mybatis.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.entity.Order;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OrderRepository</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function">Long <span class="title">insert</span><span class="params">(Order model)</span></span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.shardingjdbc.example.spring.boot.mybatis.repository;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.entity.OrderItem;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.annotations.Mapper;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">OrderItemRepository</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function">Long <span class="title">insert</span><span class="params">(OrderItem model)</span></span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"io.shardingjdbc.example.spring.boot.mybatis.repository.OrderRepository"</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insert"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"orderId"</span>&gt;</span></span><br><span class="line">        INSERT INTO t_order (</span><br><span class="line">          user_id, status</span><br><span class="line">        )</span><br><span class="line">        VALUES (</span><br><span class="line">        #&#123;userId,jdbcType=INTEGER&#125;,</span><br><span class="line">        #&#123;status,jdbcType=VARCHAR&#125;</span><br><span class="line">        )</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">"io.shardingjdbc.example.spring.boot.mybatis.repository.OrderItemRepository"</span>&gt;</span></span><br><span class="line">   </span><br><span class="line">    <span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">"insert"</span> <span class="attr">useGeneratedKeys</span>=<span class="string">"true"</span> <span class="attr">keyProperty</span>=<span class="string">"orderItemId"</span>&gt;</span></span><br><span class="line">        INSERT INTO t_order_item (</span><br><span class="line">          order_id, user_id, status</span><br><span class="line">        )</span><br><span class="line">        VALUES (</span><br><span class="line">        #&#123;orderId,jdbcType=INTEGER&#125;,</span><br><span class="line">        #&#123;userId,jdbcType=INTEGER&#125;,</span><br><span class="line">        #&#123;status,jdbcType=VARCHAR&#125;</span><br><span class="line">        )</span><br><span class="line">    <span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="MyBatis-配置文件"><a href="#MyBatis-配置文件" class="headerlink" title="MyBatis 配置文件"></a>MyBatis 配置文件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE configuration</span></span><br><span class="line"><span class="meta">        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"</span></span><br><span class="line"><span class="meta">        "http://mybatis.org/dtd/mybatis-3-config.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">package</span> <span class="attr">name</span>=<span class="string">"io.shardingjdbc.example.spring.boot.mybatis.entity"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">typeAliases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mappers</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"META-INF/mappers/OrderMapper.xml"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mapper</span> <span class="attr">resource</span>=<span class="string">"META-INF/mappers/OrderItemMapper.xml"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mappers</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="service-层"><a href="#service-层" class="headerlink" title="service 层"></a>service 层</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> io.shardingjdbc.example.spring.boot.mybatis.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.entity.Order;</span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.entity.OrderItem;</span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.repository.OrderItemRepository;</span><br><span class="line"><span class="keyword">import</span> io.shardingjdbc.example.spring.boot.mybatis.repository.OrderRepository;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.annotation.Resource;</span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoService</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> OrderRepository orderRepository;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Resource</span></span><br><span class="line">    <span class="keyword">private</span> OrderItemRepository orderItemRepository;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">insert</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        Order order = <span class="keyword">new</span> Order();</span><br><span class="line">        order.setUserId(userId);</span><br><span class="line">        order.setStatus(<span class="string">"INSERT_TEST"</span>);</span><br><span class="line">        orderRepository.insert(order);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">long</span> orderId = order.getOrderId();</span><br><span class="line">        OrderItem item = <span class="keyword">new</span> OrderItem();</span><br><span class="line">        item.setOrderId(orderId);</span><br><span class="line">        item.setUserId(userId);</span><br><span class="line">        item.setStatus(<span class="string">"INSERT_TEST"</span>);</span><br><span class="line">        orderItemRepository.insert(item);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> orderId + <span class="string">"|"</span> + item.getOrderItemId();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回生成的order_id和order_item_id</p>
+<h2 id="Controller层"><a href="#Controller层" class="headerlink" title="Controller层"></a>Controller层</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/order"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> DemoService demoService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@PostMapping</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">insertOrder</span><span class="params">(Integer userId)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> demoService.insert(userId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="使用Postman进行测试"><a href="#使用Postman进行测试" class="headerlink" title="使用Postman进行测试"></a>使用Postman进行测试</h2><p>启动服务，使用Postman进行测试：</p>
+<p><img src="/assets/blogImg/sharding-jdbc/postman_test.png" alt="image"></p>
+<p>userId从1到9依次插入9条记录，执行结果如下：</p>
+<p><img src="/assets/blogImg/sharding-jdbc/demo_ds_0-t_order_0.png" alt="image"></p>
+<p><img src="/assets/blogImg/sharding-jdbc/demo_ds_0-t_order_item_0.png" alt="image"></p>
+<p><img src="/assets/blogImg/sharding-jdbc/demo_ds_1-t_order_0.png" alt="image"></p>
+<p><img src="/assets/blogImg/sharding-jdbc/demo_ds_1-t_order_item_0.png" alt="image"></p>
+<p>可以看到数据是按照规定的规则写到不同的库和表里了：</p>
+<p>demo_ds_0<br>├── t_order_0 user_id为偶数 order_id为偶数<br>├── t_order_1 user_id为偶数 order_id为奇数<br>├── t_order_item_0 user_id为偶数 order_id为偶数<br>└── t_order_item_1 user_id为偶数 order_id为奇数<br>demo_ds_1<br>├── t_order_0 user_id为奇数 order_id为偶数<br>├── t_order_1 user_id为奇数 order_id为奇数<br>├── t_order_item_0 user_id为奇数 order_id为偶数<br>└── t_order_item_1 user_id为奇数 order_id为奇数</p>
+<p>这里有个小问题，就是两个库的 t_order_1,t_order_item_1 表中均没有数据，数据分配并不均匀。这是因为Sharding-JDBC采用的默认的分布式自增主键是使用的snowflake算法实现的，说明可以参考sharding-jdbc官网：</p>
+<p><a href="http://shardingjdbc.io/docs_cn/01-start/faq/" target="_blank" rel="noopener">http://shardingjdbc.io/docs_cn/01-start/faq/</a></p>
+<p><img src="/assets/blogImg/sharding-jdbc/faq_9.png" alt="image"></p>
+<p>关于这个问题，考虑修改分表策略为hash分片，或者稍微改造下snowflake 随机初始？ 待研究完善…</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Sharding-JDBC/" rel="tag"># Sharding-JDBC</a>
+          
+            <a href="/tags/分库分表/" rel="tag"># 分库分表</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/27/spring-cloud-microservice-example/" rel="next" title="SpringCloud微服务示例">
+                <i class="fa fa-chevron-left"></i> SpringCloud微服务示例
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/assets/totoro.png"
+                alt="Jason Li" />
+            
+              <p class="site-author-name" itemprop="name">Jason Li</p>
+              <p class="site-description motion-element" itemprop="description">看清现实，心怀梦想，幽默面对。</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/jasonli822" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lihu822@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sharding-JDBC-简介"><span class="nav-number">1.</span> <span class="nav-text">Sharding-JDBC 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#建库、建表sql"><span class="nav-number">2.</span> <span class="nav-text">建库、建表sql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pom文件"><span class="nav-number">3.</span> <span class="nav-text">pom文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置文件-application-properties"><span class="nav-number">4.</span> <span class="nav-text">配置文件 application.properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">5.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Entity实体类定义"><span class="nav-number">6.</span> <span class="nav-text">Entity实体类定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mapper层"><span class="nav-number">7.</span> <span class="nav-text">Mapper层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MyBatis-配置文件"><span class="nav-number">8.</span> <span class="nav-text">MyBatis 配置文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#service-层"><span class="nav-number">9.</span> <span class="nav-text">service 层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Controller层"><span class="nav-number">10.</span> <span class="nav-text">Controller层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Postman进行测试"><span class="nav-number">11.</span> <span class="nav-text">使用Postman进行测试</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason Li</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'jasonli822',
+            repo: 'jasonli822.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: 'b27313b09077a9ab3d80b82065664e5606fe5c9b',
+            
+                client_id: '064164f2ae3bfdf7ff89'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
